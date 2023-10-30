@@ -1,6 +1,8 @@
 import React from "react";
 import {useParams } from 'react-router-dom';
 import Listing from "./Listing";
+import { fetchListingByPath } from "./listingSlice";
+import store from "../../app/store";
 
 export default function SubReddit({}){
     let {subredditName} = useParams;
@@ -12,6 +14,6 @@ export default function SubReddit({}){
     return (<>
     
         <h2>Sub Reddit:{path} </h2>
-        <Listing />
+        <Listing listingObject={store.getState().listing.listing}/>
     </>)
 }

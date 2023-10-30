@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import store from '../../app/store';
 
-import { fetchListingByPath } from "./listingSlice";
 
-export default function Listing({listing}){
+
+export default function Listing({listingObject}){
+
+
+    Object.values(listingObject).map((thing)=><p>{JSON.stringify(thing)}</p>
+    )
+    
+
     
 
 
-
-
-
-    return (<>
-        <p>Listing: {path}</p>
-    </>)
 }

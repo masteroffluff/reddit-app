@@ -8,14 +8,17 @@ import {
 import AppLayout from "./AppLayout";
 import Listing from "../features/listing/Listing";
 import Article from "../features/article/Article";
+import FrontPage from "../features/listing/FrontPage";
+import SubReddit from "../features/listing/Subreddit";
 import SearchResults from "../features/search/SearchResults";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AppLayout/>}> {/* front page */}
-          <Route path="r/:subredditName/" element= {<Listing />} />  {/* Subreddit Listing */}
+        <Route path="/" element={<AppLayout/>}> {/* container for app */}
+          <Route index element= {<FrontPage />} />{/* front page */}
+          <Route path="r/:subredditName/" element= {<Subreddit />} />  {/* Subreddit Listing */}
           <Route path="r/:subredditName/:id/:articleName/" element={<Article />} /> {/* individual aricle */}
           <Route path="search/" element={<SearchResults />} /> {/* Page for when the searchbar is invoked. */}
         </Route>

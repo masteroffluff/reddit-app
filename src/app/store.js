@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { listing } from "../features/listing/listingSlice";
+import { article } from  "../features/article/articleSlice"
 // import reducers
 
 export default configureStore({
     reducer: {
-/*       topics:topicsReducer,
-      quizzes:quizzesReducer,
-      cards:cardReducer, */
-    },
-  });
+        listing,
+        article
+  }});

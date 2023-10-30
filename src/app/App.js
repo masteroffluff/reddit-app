@@ -9,7 +9,7 @@ import AppLayout from "./AppLayout";
 import Listing from "../features/listing/Listing";
 import Article from "../features/article/Article";
 import FrontPage from "../features/listing/FrontPage";
-import SubReddit from "../features/listing/Subreddit";
+import Subreddit from "../features/listing/Subreddit";
 import SearchResults from "../features/search/SearchResults";
 
 function App() {

@@ -4,12 +4,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 const redditURL = "https://www.reddit.com";
 const fakejson = "../../../fakejson/frontpage.json"
 
-fetchListingByPath= createAsyncThunk(
+export const fetchListingByPath= createAsyncThunk(
     'listing/fetchListingByPath',
     async (path) =>{
-        const endPoint = redditURL+path+".json"
-        const listing = await fetch(fakejson);
-        const data = await listing.json;
+        //const endPoint = redditURL+path+".json"
+        const endPoint = fakejson
+        const listing = await fetch(endPoint);
+        const data = await listing.json();
         return data;
 
     }
@@ -44,7 +45,7 @@ export const listingSlice = createSlice(
     
 
 
-export const { fetchListingByPath } = listingSlice.actions
+//export { fetchListingByPath } = listingSlice.actions
 
 export default listingSlice.reducer
 

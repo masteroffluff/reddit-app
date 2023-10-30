@@ -5,7 +5,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 const redditURL = "https://www.reddit.com";
 const fakejson = "../../../fakejson/frontpage.json"
 
-getArticle= createAsyncThunk(
+const getArticle= createAsyncThunk(
     'listing/getArticle',
     async (path) =>{
         const endPoint = redditURL+path+".json"
@@ -31,13 +31,26 @@ export const articleSlice = createSlice(
         },
         reducers:{},
         extraReducers:{
-
+            extraReducers:{
+                [getArticle.pending]: (state, action) => {
+                    state.isLoading = true;
+                    state.hasError = false;
+                },
+                [getArticle.fulfilled]: (state, action) => {
+                    state.article=action.payload;
+                    state.isLoading = false;
+                    state.hasError = false;
+                },
+                [getArticle.rejected]: (state, action) => {
+                    state.isLoading = false;
+                    state.hasError = true;
+                }
         }
-    })
+    }})
     
     
 
 
-export const { updateArticle } = articleSlice.actions
+
 
 export default articleSlice.reducer

@@ -3,8 +3,8 @@ import { configureStore } from "@reduxjs/toolkit";
 
 export default configureStore({
     reducer: {
-      topics:topicsReducer,
+/*       topics:topicsReducer,
       quizzes:quizzesReducer,
-      cards:cardReducer,
+      cards:cardReducer, */
     },
   });

@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
-import store from '../../app/store';
-
+import Item from "./Item"
 
 
 export default function Listing({listingObject}){
-
-
-    Object.values(listingObject).map((thing)=><p>{JSON.stringify(thing)}</p>
+    if (listingObject.data==undefined){
+        return <p>something aint right</p>
+    }
+return(
+    <>
+    {Object.values(listingObject.data.children).map((thing)=><Item thing={thing}/>
+    )}
+    </>
     )
-    
-
     
 
 

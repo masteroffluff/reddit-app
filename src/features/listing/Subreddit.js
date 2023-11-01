@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import {useParams } from 'react-router-dom';
-import Listing from "./Listing";
+import Listing from './Listing';
 import { fetchListingByPath } from "./listingSlice";
 import store from "../../app/store";
 

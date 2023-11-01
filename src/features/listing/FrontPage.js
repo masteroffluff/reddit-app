@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Listing from "./Listing";
 import store from "../../app/store";
-import {fetchListingByPath, selectedListing, isLoadingListing, hasErrorListing} from '../listing/listingSlice'
+import {fetchListingByPath, selectedListing, isLoadingListing, hasErrorListing} from './listingSlice'
 import { useSelector, useDispatch } from 'react-redux';
 
 // render the default page 
@@ -27,7 +27,6 @@ export default function FrontPage(){
     return (<>
         <h1>Welcome to Reddit</h1>
         <p>come for the cats stay for the empathy</p>
-        <p>{JSON.stringify(listingSelector)}</p>
         <Listing listingObject={listingSelector}/>
     </>)
 }

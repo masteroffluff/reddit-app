@@ -9,15 +9,9 @@ const fakejson = "../../fakejson/frontpage.json"
 export const fetchListingByPath= createAsyncThunk(
     'listing/fetchListingByPath',
     async (path) =>{
-        //const endPoint = redditURL+path+".json"
-        //const endPoint = fakejson;
-        //const listing = await fetch(endPoint);
-        //const data = await listing.json();
-        //return JSON.parse(data);
-        
-       // const data=fs.readFileSync(fakejson)
-       //return Promise.resolve(JSON.parse(fakeJSONstring));
-        const listing = await fetch("http://www.reddit.com/r/pics/.json")
+        const endPoint = redditURL+path+".json"
+        const listing = await fetch(endPoint,{method:'GET'});
+        //const listing = await fetch("http://www.reddit.com/r/amitheasshole/.json")
         const data = await listing.json();
         return data
 

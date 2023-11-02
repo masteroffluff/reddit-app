@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 //import fs from "node:fs";
 
-const redditURL = "http://www.reddit.com";
+const redditURL = "http://www.reddit.com/";
 
 const fakejson = "../../fakejson/frontpage.json"
 
@@ -10,6 +10,7 @@ export const fetchListingByPath= createAsyncThunk(
     'listing/fetchListingByPath',
     async (path) =>{
         const endPoint = redditURL+path+".json"
+        
         const listing = await fetch(endPoint,{method:'GET'});
         //const listing = await fetch("http://www.reddit.com/r/amitheasshole/.json")
         const data = await listing.json();

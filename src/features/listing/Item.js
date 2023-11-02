@@ -1,5 +1,6 @@
 import parse from 'html-react-parser'
 import React from 'react'
+import { Link } from 'react-router-dom'
 //var parse = require('html-react-parser');
 
 // invidual entry from a listing
@@ -17,6 +18,9 @@ export default function Item({thing}){
         is_self, 
         is_gallery,
         media,
+        url,
+        subreddit_name_prefixed,
+
     } = thing.data
     
 
@@ -32,7 +36,7 @@ export default function Item({thing}){
             switch (domain){
                 case "i.redd.it":
                     // single image hosed by reddit
-                    return <code>Single Image</code>
+                    return <img src={url} alt={title} />
                 case "v.redd.it":
 
                     return <code>Reddit Video</code>
@@ -51,7 +55,8 @@ export default function Item({thing}){
     }
     
     return (<>
-        <h3 style={{fontFamily:'courier'}}>{title} by {author}</h3>
+        <h3>{title}</h3>
+        <h4>by {author} in <Link to={subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
         <div>{selftext_htmlFixed}</div>
         {mediaDeflibulator()}
     </>)

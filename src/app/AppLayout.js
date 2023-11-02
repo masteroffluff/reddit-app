@@ -11,6 +11,15 @@ export default function AppLayout(){
                 <img alt="logo" src={logo} />
                 <Search />
             </header>
+            <nav>
+                <ul>
+                <li><NavLink to = "/">Front Page</NavLink></li>
+                <li><NavLink to = "/r/pics">PICS</NavLink></li>
+                <li><NavLink to = "/r/amitheasshole">Am I the Asshole</NavLink></li>
+                <li><NavLink to = "/r/asmr">ASMR</NavLink></li>
+                <li><NavLink to = "/r/gonewild">PICS</NavLink></li>
+                </ul>
+            </nav>
             <main>
                 <PreviousSubreddits />
                 <Outlet />

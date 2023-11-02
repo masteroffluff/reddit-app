@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Listing from "./Listing";
-import store from "../../app/store";
 import {fetchListingByPath, selectedListing, isLoadingListing, hasErrorListing} from './listingSlice'
 import { useSelector, useDispatch } from 'react-redux';
 

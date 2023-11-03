@@ -1,6 +1,7 @@
 import parse from 'html-react-parser'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import EmbeddedVideo from '../../components/media/EmbeddedVideo'
 //var parse = require('html-react-parser');
 
 // invidual entry from a listing
@@ -47,8 +48,9 @@ export default function Item({thing}){
         if (is_gallery){
             return <code>Reddit Gallery</code>
         }
-        if (media){
-            return <code>Embedded media</code>
+        if (media!=null){
+            //return <code>Embedded media</code>
+            return <EmbeddedVideo media={media} />
         }
         return <code>Linked document {domain}</code>
 

@@ -2,6 +2,7 @@ import parse from 'html-react-parser'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import EmbeddedVideo from '../../components/media/EmbeddedVideo'
+import RedditVideo from "../../components/media/RedditVideo"
 //var parse = require('html-react-parser');
 
 // invidual entry from a listing
@@ -40,7 +41,7 @@ export default function Item({thing}){
                     return <img src={url} alt={title} />
                 case "v.redd.it":
 
-                    return <code>Reddit Video</code>
+                    return <RedditVideo media={media} />
                 default:
                     return <code> unidentified reddit domain {domain}</code>
             }

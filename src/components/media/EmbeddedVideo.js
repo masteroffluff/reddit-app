@@ -6,7 +6,7 @@ export default function EmbeddedVideo ({media}){
     const {html, title} = media.oembed;
     //const html = (dummyVideo)
 
-    let src=html.match(/(?<=src=\").*\"/)
+    let src=html.match(/(?<=src=").*"/)
     src = String(src).split('"')[0]
     //return <p>{src}</p>
  
@@ -14,7 +14,7 @@ export default function EmbeddedVideo ({media}){
     //alert (videoElement)
     return (
         <div className="embeddedVideo">
-            <iframe width="100%" height="500px" src={src} frameborder="0" allowfullscreen></iframe>
+            <iframe width="100%" height="500px" src={src} frameborder="0" title={title} allowfullscreen></iframe>
         </div>)
 
     

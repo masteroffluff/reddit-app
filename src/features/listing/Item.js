@@ -7,8 +7,6 @@ import RedditVideo from "../../components/media/RedditVideo"
 
 // invidual entry from a listing
 
-// parse the selftext_html into actual html
-
 
 export default function Item({thing}){
     const {
@@ -37,7 +35,7 @@ export default function Item({thing}){
             console.log(newThing)
             return (<>
                 <code>cross post</code>
-                <item thing={newThing}></item>
+                <Item thing={newThing}></Item>
             </>)
             
         }

@@ -22,7 +22,8 @@ export default function Item({thing}){
         media,
         url,
         subreddit_name_prefixed,
-
+        thumbnail,
+        crosspost_parent_list,
     } = thing.data
     
 
@@ -31,6 +32,15 @@ export default function Item({thing}){
     
     // handle the different types of media
     const mediaDeflibulator=()=>{
+        if (crosspost_parent_list !==undefined){
+            const newThing={data:crosspost_parent_list[`0`]}
+            console.log(newThing)
+            return (<>
+                <code>cross post</code>
+                <item thing={newThing}></item>
+            </>)
+            
+        }
         if (is_self){
             return ""; // this is a self post no media neded
         }
@@ -53,15 +63,17 @@ export default function Item({thing}){
             //return <code>Embedded media</code>
             return <EmbeddedVideo media={media} />
         }
-        return <code>Linked document {domain}</code>
+        return <a href={url}><img src={thumbnail} /></a>
 
     }
     
-    return (<>
-        <h3>{title}</h3>
-        <h4>by {author} in <Link to={subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
-        <div>{selftext_htmlFixed}</div>
-        {mediaDeflibulator()}
-    </>)
+    return (
+        <div className='item'>
+            <h3>{title}</h3>
+            <h4>by {author} in <Link to={subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
+            <div className='mediaContainer'>{mediaDeflibulator()}</div>
+            <div>{selftext_htmlFixed}</div>
+            
+        </div>)
 }
 

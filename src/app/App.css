@@ -1,0 +1,10 @@
+.embeddedVideo{
+    width: 500px;
+    display: block;
+  }
+  
+  .item{
+    width: 750px;
+    padding-left:100px;
+    border-bottom: 1px grey;
+  }

@@ -4,6 +4,7 @@ import {
   BrowserRouter,
   Routes
 } from "react-router-dom";
+import './App.css'
 // import components and features here
 import AppLayout from "./AppLayout";
 import Listing from "../features/listing/Listing";

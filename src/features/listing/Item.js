@@ -3,6 +3,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import EmbeddedVideo from '../../components/media/EmbeddedVideo'
 import RedditVideo from "../../components/media/RedditVideo"
+import Gallery from '../../components/media/Gallery'
+import LinkedArticle from '../../components/media/LinkedArticle'
 //var parse = require('html-react-parser');
 
 // invidual entry from a listing
@@ -22,6 +24,8 @@ export default function Item({thing}){
         subreddit_name_prefixed,
         thumbnail,
         crosspost_parent_list,
+        gallery_data,
+        media_metadata,
     } = thing.data
     
 
@@ -32,7 +36,7 @@ export default function Item({thing}){
     const mediaDeflibulator=()=>{
         if (crosspost_parent_list !==undefined){
             const newThing={data:crosspost_parent_list[`0`]}
-            console.log(newThing)
+            //console.log(newThing)
             return (<>
                 <code>cross post</code>
                 <Item thing={newThing}></Item>
@@ -40,13 +44,16 @@ export default function Item({thing}){
             
         }
         if (is_self){
-            return ""; // this is a self post no media neded
+            return <p>self post</p>; // this is a self post no media neded
         }
         if (is_reddit_media_domain) {
             switch (domain){
                 case "i.redd.it":
                     // single image hosed by reddit
-                    return <img src={url} alt={title} />
+                    return (<>
+                        <p>image</p>
+                        <img src={url} alt={title} />
+                    </>)
                 case "v.redd.it":
 
                     return <RedditVideo media={media} />
@@ -55,20 +62,24 @@ export default function Item({thing}){
             }
         }
         if (is_gallery){
-            return <code>Reddit Gallery</code>
+            return <Gallery gallery_data={gallery_data} title={title} media_metadata={media_metadata} />
         }
         if (media!=null){
             //return <code>Embedded media</code>
             return <EmbeddedVideo media={media} />
         }
-        return <a href={url}><img src={thumbnail} /></a>
+        
+        // if its nothing else then its a linked article
+        
+        return <LinkedArticle url={url} thumbnail={thumbnail} domain={domain} />;
+        
 
     }
     
     return (
-        <div className='item'>
+        <div>
             <h3>{title}</h3>
-            <h4>by {author} in <Link to={subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
+            <h4>by {author} in <Link to={"/"+subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
             <div className='mediaContainer'>{mediaDeflibulator()}</div>
             <div>{selftext_htmlFixed}</div>
             

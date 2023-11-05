@@ -7,6 +7,7 @@ export default function RedditVideo({media}){
     const {hls_url} = media.reddit_video
     return (
         <>
+            <code>reddit video</code>
             <ReactHlsPlayer
                 src={hls_url}
                 autoPlay={false}

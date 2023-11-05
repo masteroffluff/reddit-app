@@ -6,10 +6,10 @@ const redditURL = "https://www.reddit.com";
 const fakejson = "../../../fakejson/frontpage.json"
 
 const getArticle= createAsyncThunk(
-    'listing/getArticle',
+    'article/getArticle',
     async (path) =>{
         const endPoint = redditURL+path+".json"
-        const listing = await fetch(fakejson);
+        const listing = await fetch(endPoint);
         const data = await listing.json;
         return data;
 

@@ -7,7 +7,7 @@ export default function ListingList({listingObject}){
     }
 return(
     <>
-    {Object.values(listingObject.data.children).map((thing)=><Item key={thing.id} thing={thing}/>
+    {Object.values(listingObject.data.children).map((thing)=><div key={thing.id}className="item"><Item key={thing.id} thing={thing}/></div>
     )}
     </>
     )

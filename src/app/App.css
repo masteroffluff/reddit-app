@@ -8,3 +8,9 @@
     padding-left:100px;
     border-bottom: 1px grey;
   }
+
+  .image{
+    min-width:500px;
+    height:100%;
+    
+  }

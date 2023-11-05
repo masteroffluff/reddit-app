@@ -9,7 +9,19 @@ const fakejson = "../../fakejson/frontpage.json"
 export const fetchListingByPath= createAsyncThunk(
     'listing/fetchListingByPath',
     async (path) =>{
-        const endPoint = redditURL+path+".json"
+        const endPoint = redditURL+path+".json?limit=100"
+        
+        const listing = await fetch(endPoint,{method:'GET'});
+        //const listing = await fetch("http://www.reddit.com/r/amitheasshole/.json")
+        const data = await listing.json();
+        return data
+
+    }
+)
+export const appendListingByPath= createAsyncThunk(
+    'listing/appendListingByPath',
+    async (path,after) =>{
+        const endPoint = redditURL+path+".json?limit=100&after="+after
         
         const listing = await fetch(endPoint,{method:'GET'});
         //const listing = await fetch("http://www.reddit.com/r/amitheasshole/.json")

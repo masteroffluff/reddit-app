@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {useParams } from 'react-router-dom';
 import ListingList from './ListingList';
-import {fetchListingByPath,appendListingByPath, isLoadingListing, hasErrorListing, } from './listingSlice'
+import {fetchListingByPath,appendListingByPath, isLoadingListing, hasErrorListing,selectedListing } from './listingSlice'
 import store from "../../app/store";
 import { useSelector } from 'react-redux';
 
@@ -16,15 +16,15 @@ export default function Listing(){
         store.dispatch(fetchListingByPath(path))}
     ,[path])
 
-    const listing =()=> store.getState().listing.listing
-    store.subscribe (listing)
+    const listing =useSelector(selectedListing)
+    
+
     //const listingSelector = useSelector(selectedListing)
     const listIsLoadingSelector = useSelector(isLoadingListing)
     const listingHasError = useSelector(hasErrorListing)
 
     const handleContinue=()=>{
-        const after = store.getState().listing.listing.data.after
-        store.dispatch(appendListingByPath(path,after))
+        store.dispatch(appendListingByPath(path))
         console.log(store.getState().listing.listing.data)
     }
     
@@ -34,11 +34,11 @@ export default function Listing(){
     if (listingHasError){
         return <h1>Error</h1>
     }
-    //console.log(listing())
+    //console.log(listing)
     if(subredditName){
         return (<>
             <h2>Sub Reddit:{path} </h2>
-            <ListingList listingObject={listing()}/>
+            <ListingList listingObject={listing}/>
             <button onClick={handleContinue}>load more?</button>
         </>)
     }
@@ -46,7 +46,7 @@ export default function Listing(){
         return (<>
             <h1>Welcome to Reddit</h1>
             <p>come for the cats stay for the empathy</p>
-            <ListingList listingObject={listing()}/>
+            <ListingList listingObject={listing}/>
             <button onClick={handleContinue}>load more?</button>
             
         </>)

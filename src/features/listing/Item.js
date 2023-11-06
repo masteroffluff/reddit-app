@@ -27,7 +27,7 @@ export default function Item({thing, itemnumber}){
         gallery_data,
         media_metadata,
     } = thing.data
-    console.log(itemnumber)
+    
 
     // turn the selftext_html to parseabel html
     const selftext_htmlFixed = selftext_html?parse(parse(selftext_html)):"" // parsed once to un escape the characters and once to run the html

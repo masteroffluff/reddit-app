@@ -3,13 +3,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 //import fs from "node:fs";
 
 const redditURL = "http://www.reddit.com/";
+const orderBy = "hot/"
 
 //const fakejson = "../../fakejson/frontpage.json"
 
 export const fetchListingByPath= createAsyncThunk(
     'listing/fetchListingByPath',
     async (path) =>{
-        const endPoint = redditURL+path+".json?limit=50"
+        //console.log(path);
+        const endPoint = redditURL+path+orderBy+".json?limit=50"
         
         const listing = await fetch(endPoint,{method:'GET'});
         //const listing = await fetch("http://www.reddit.com/r/amitheasshole/.json")
@@ -20,9 +22,12 @@ export const fetchListingByPath= createAsyncThunk(
 )
 export const appendListingByPath= createAsyncThunk(
     'listing/appendListingByPath',
-    async (path,after) =>{
-        const endPoint = redditURL+path+".json?limit=50&after="+after
-        
+    async (path,{getState}) =>{
+        //console.log("after" ,after)
+        const state = getState();
+        const after = state.listing.listing.data.after
+        const endPoint = redditURL+path+orderBy+".json?limit=50&after="+after
+        //console.log(endPoint);
         const listing = await fetch(endPoint,{method:'GET'});
         //const listing = await fetch("http://www.reddit.com/r/amitheasshole/.json")
         const data = await listing.json();
@@ -36,6 +41,7 @@ export const listingSlice = createSlice(
         name:'listing',
         initialState:{
             listing:  {},
+            after:"",
             isLoading: false,
             hasError: false
         },
@@ -53,15 +59,20 @@ export const listingSlice = createSlice(
                 let {children: stateChildren} = state.listing.data
                 let {children: actionChildren, after:actionAfter} = action.payload.data
                 // update after
+                
+                
                 state.listing.data.after=actionAfter
                 // iterate through list and make sure the object number is added to last
                              
-                const lastDataKey = Number(Object.keys(stateChildren).pop())
+                const lastDataKey = Number(Object.keys(stateChildren).pop())+1
+                const actionChildrenArray=Object.entries(actionChildren)
 
-                Object.entries(actionChildren).forEach(([k,v]) => {
-                    stateChildren[`${Number(k)+lastDataKey}`]=v
+                actionChildrenArray.forEach(([k,v]) => {
+                if (!stateChildren.some(({data})=>data.id===v.data.id)){ 
+                
+                    stateChildren[`${Number(k)+lastDataKey}`]=v}
                 })
-
+                
                 
                 state.isLoading = false;
                 state.hasError = false;

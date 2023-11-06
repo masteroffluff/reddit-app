@@ -32,8 +32,8 @@ export const articleSlice = createSlice(
     {
         name:'article',
         initialState:{
-            0:{},
-            1:{},
+            article:{},
+            replies:{},
             isLoading: false,
             hasError: false
 
@@ -43,7 +43,8 @@ export const articleSlice = createSlice(
             extraReducers:(builder)=>{
                 builder
                 .addCase(fetchArticleByPath.fulfilled,(state, action) => {
-                    state.article=action.payload;
+                    state.article.article=action.payload["0"];
+                    state.article.replies=action.payload["1"];
                     state.isLoading = false;
                     state.hasError = false;
                     }
@@ -84,7 +85,10 @@ export const articleSlice = createSlice(
         }
     })
     
-    
+export const selectedArticle = (state) => state.article.article;
+export const selectedReplies = (state) => state.article.replies;
+export const isLoadingListing = (state) => state.article.isLoading;
+export const hasErrorListing = (state) => state.article.hasError;
 
 
 

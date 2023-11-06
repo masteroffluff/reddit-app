@@ -5,10 +5,10 @@ export default function LinkedArticle({url,thumbnail, domain}){
     if(thumbnail){
         console.log()
     return (<>
-        <code>linked article with thumbnail {url}</code>
-{/*         <a href={url} target="_blank" rel="noopener noreferrer">
+        
+    <a href={url} target="_blank" rel="noopener noreferrer">
             <img className="image" src={thumbnail} alt={thumbnail} />
-        </a> */}
+        </a>
     </>)}
     else{
     return(<>

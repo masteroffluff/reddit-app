@@ -4,12 +4,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const redditURL = "http://www.reddit.com/";
 
-const fakejson = "../../fakejson/frontpage.json"
+//const fakejson = "../../fakejson/frontpage.json"
 
 export const fetchListingByPath= createAsyncThunk(
     'listing/fetchListingByPath',
     async (path) =>{
-        const endPoint = redditURL+path+".json?limit=100"
+        const endPoint = redditURL+path+".json?limit=50"
         
         const listing = await fetch(endPoint,{method:'GET'});
         //const listing = await fetch("http://www.reddit.com/r/amitheasshole/.json")
@@ -21,7 +21,7 @@ export const fetchListingByPath= createAsyncThunk(
 export const appendListingByPath= createAsyncThunk(
     'listing/appendListingByPath',
     async (path,after) =>{
-        const endPoint = redditURL+path+".json?limit=100&after="+after
+        const endPoint = redditURL+path+".json?limit=50&after="+after
         
         const listing = await fetch(endPoint,{method:'GET'});
         //const listing = await fetch("http://www.reddit.com/r/amitheasshole/.json")
@@ -40,21 +40,55 @@ export const listingSlice = createSlice(
             hasError: false
         },
         reducers:{},
-        extraReducers:{
-            [fetchListingByPath.pending]: (state, action) => {
-                state.isLoading = true;
-                state.hasError = false;
-            },
-            [fetchListingByPath.fulfilled]: (state, action) => {
+        extraReducers:
+        (builder)=>{
+            builder
+            .addCase(fetchListingByPath.fulfilled,(state, action) => {
                 state.listing=action.payload;
                 state.isLoading = false;
                 state.hasError = false;
-            },
-            [fetchListingByPath.rejected]: (state, action) => {
-                console.log(action)
+                }
+            )
+            .addCase(appendListingByPath.fulfilled,(state, action) => {
+                let {children: stateChildren} = state.listing.data
+                let {children: actionChildren, after:actionAfter} = action.payload.data
+                // update after
+                state.listing.data.after=actionAfter
+                // iterate through list and make sure the object number is added to last
+                             
+                const lastDataKey = Number(Object.keys(stateChildren).pop())
+
+                Object.entries(actionChildren).forEach(([k,v]) => {
+                    stateChildren[`${Number(k)+lastDataKey}`]=v
+                })
+
+                
                 state.isLoading = false;
-                state.hasError = true;
-            }
+                state.hasError = false;
+                }
+            )
+            .addCase(
+                fetchListingByPath.pending,
+                (state) => {
+                    state.isLoading = true;
+                    state.hasError = false;
+                }
+            )            
+/*             .addMatcher(
+                (action) => action.type.endsWith('/pending'),
+                (state) => {
+                    state.isLoading = true;
+                    state.hasError = false;
+                }
+            ) */
+            .addMatcher(
+                (action) => action.type.endsWith('/rejected'),
+                (state, action) => {
+                    console.log(action)
+                    state.isLoading = false;
+                    state.hasError = true;
+                }
+            )
         }
     })
     

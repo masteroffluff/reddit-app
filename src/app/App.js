@@ -12,6 +12,7 @@ import Article from "../features/article/Article";
 // import FrontPage from "../features/listing/FrontPage";
 import SearchResults from "../features/search/SearchResults";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -26,5 +27,7 @@ function App() {
     </BrowserRouter>
   );
 }
+
+
 
 export default App;

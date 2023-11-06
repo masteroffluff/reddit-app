@@ -19,14 +19,12 @@ export default function EmbeddedVideo ({media}){
         //alert (videoElement)
         return (
             <div className="embeddedVideo">
-                <p>embeddedVideo</p>
                 <iframe width="100%" height="500px" src={src} frameborder="0" title={title} allowfullscreen></iframe>
                 <button onClick={handleClick}>Unload</button>
             </div>)
     }else{
         return(
             <div className="embeddedVideo">
-                <p>embeddedVideo</p>
                 <img src={thumbnail_url} className="image" onClick={handleClick} alt={title} />
             </div>
         )

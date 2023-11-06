@@ -5,9 +5,10 @@ export default function ListingList({listingObject}){
     if (listingObject.data===undefined){
         return <p>something aint right</p>
     }
+    
 return(
     <>
-    {Object.values(listingObject.data.children).map((thing)=><div key={thing.id}className="item"><Item key={thing.id} thing={thing}/></div>
+    {Object.entries(listingObject.data.children).map(([key,thing])=>{return <div  key={key} className="item"><Item key={key} itemnumber={key} thing={thing}/></div>}
     )}
     </>
     )

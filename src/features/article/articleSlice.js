@@ -3,14 +3,23 @@ import {createSlice} from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const redditURL = "https://www.reddit.com";
-const fakejson = "../../../fakejson/frontpage.json"
 
-const getArticle= createAsyncThunk(
+const fetchArticleByPath= createAsyncThunk(
     'article/getArticle',
     async (path) =>{
         const endPoint = redditURL+path+".json"
-        const listing = await fetch(endPoint);
-        const data = await listing.json;
+        const article = await fetch(endPoint);
+        const data = await article.json;
+        return data;
+
+    }
+)
+const appendArticleByPath= createAsyncThunk(
+    'article/getArticle',
+    async (path,after) =>{
+        const endPoint = redditURL+path+".json"
+        const article = await fetch(endPoint);
+        const data = await article.json;
         return data;
 
     }
@@ -31,22 +40,49 @@ export const articleSlice = createSlice(
         },
         reducers:{},
         extraReducers:{
-            extraReducers:{
-                [getArticle.pending]: (state, action) => {
-                    state.isLoading = true;
-                    state.hasError = false;
-                },
-                [getArticle.fulfilled]: (state, action) => {
+            extraReducers:(builder)=>{
+                builder
+                .addCase(fetchArticleByPath.fulfilled,(state, action) => {
                     state.article=action.payload;
                     state.isLoading = false;
                     state.hasError = false;
-                },
-                [getArticle.rejected]: (state, action) => {
+                    }
+                )
+                .addCase(appendArticleByPath.fulfilled,(state, action) => {
+                    let {data: stateData} = state.article
+                    let {data: actionData, after:actionAfter} = action.payload
+                    // update after
+                    state.article.aricle=actionAfter
+                    // iterate through list and make sure the object number is added to last
+                                    
+                    const lastDataKey = Object.keys(stateData).pop()
+                    Object.entries(actionData).forEach(([k,v]) => {
+                        stateData[`${k+lastDataKey}`]=v
+                    })
+    
+                    
                     state.isLoading = false;
-                    state.hasError = true;
-                }
+                    state.hasError = false;
+                    }
+                )
+                .addMatcher(
+                    (action) => action.type.endsWith('/pending'),
+                    (state) => {
+                        state.isLoading = true;
+                        state.hasError = false;
+                    }
+                )
+                .addMatcher(
+                    (action) => action.type.endsWith('/rejected'),
+                    (state, action) => {
+                        console.log(action)
+                        state.isLoading = false;
+                        state.hasError = true;
+                    }
+                )
+            }
         }
-    }})
+    })
     
     
 

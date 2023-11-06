@@ -10,7 +10,7 @@ import LinkedArticle from '../../components/media/LinkedArticle'
 // invidual entry from a listing
 
 
-export default function Item({thing}){
+export default function Item({thing, itemnumber}){
     const {
         title,
         author,
@@ -27,7 +27,7 @@ export default function Item({thing}){
         gallery_data,
         media_metadata,
     } = thing.data
-    
+    console.log(itemnumber)
 
     // turn the selftext_html to parseabel html
     const selftext_htmlFixed = selftext_html?parse(parse(selftext_html)):"" // parsed once to un escape the characters and once to run the html
@@ -35,6 +35,7 @@ export default function Item({thing}){
     // handle the different types of media
     const mediaDeflibulator=()=>{
         if (crosspost_parent_list !==undefined){
+            
             const newThing={data:crosspost_parent_list[`0`]}
             //console.log(newThing)
             return (<>
@@ -44,14 +45,13 @@ export default function Item({thing}){
             
         }
         if (is_self){
-            return <p>self post</p>; // this is a self post no media neded
+            return; // this is a self post no media neded
         }
         if (is_reddit_media_domain) {
             switch (domain){
                 case "i.redd.it":
                     // single image hosed by reddit
                     return (<>
-                        <p>image</p>
                         <img src={url} alt={title} />
                     </>)
                 case "v.redd.it":
@@ -78,7 +78,7 @@ export default function Item({thing}){
     
     return (
         <div>
-            <h3>{title}</h3>
+            <h3>{itemnumber}:{title}</h3>
             <h4>by {author} in <Link to={"/"+subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
             <div className='mediaContainer'>{mediaDeflibulator()}</div>
             <div>{selftext_htmlFixed}</div>

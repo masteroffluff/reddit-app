@@ -5,6 +5,7 @@ import EmbeddedVideo from '../../components/media/EmbeddedVideo'
 import RedditVideo from "../../components/media/RedditVideo"
 import Gallery from '../../components/media/Gallery'
 import LinkedArticle from '../../components/media/LinkedArticle'
+
 //var parse = require('html-react-parser');
 
 // invidual entry from a listing
@@ -26,6 +27,7 @@ export default function Item({thing, itemnumber}){
         crosspost_parent_list,
         gallery_data,
         media_metadata,
+        permalink,
     } = thing.data
     
 
@@ -78,7 +80,7 @@ export default function Item({thing, itemnumber}){
     
     return (
         <div>
-            <h3>{itemnumber}:{title}</h3>
+            <h3>{title}</h3><Link to={permalink}> Go there</Link>
             <h4>by {author} in <Link to={"/"+subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
             <div className='mediaContainer'>{mediaDeflibulator()}</div>
             <div>{selftext_htmlFixed}</div>

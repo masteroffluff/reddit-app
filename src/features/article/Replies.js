@@ -3,7 +3,7 @@ import React from "react";
 
 
 
-export default function Comments({comments}){
+export default function Replies({replies}){
     return (<>
         <p>Comments</p>
     </>)

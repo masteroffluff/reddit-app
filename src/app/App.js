@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<AppLayout/>}> {/* container for app */}
           <Route index element= {<Listing />} />{/* front page */}
           <Route path="r/:subredditName/" element= {<Listing />} />  {/* Subreddit Listing */}
-          <Route path="r/:subredditName/:id/:articleName/" element={<Article />} /> {/* individual aricle */}
+          <Route path="r/:subredditName/comments/:id/:articleName/" element={<Article />} /> {/* individual aricle */}
           <Route path="search/" element={<SearchResults />} /> {/* Page for when the searchbar is invoked. */}
         </Route>
       </Routes>
@@ -28,6 +28,6 @@ function App() {
   );
 }
 
-
+//r/gaming/comments/17jspv1/which_game_companies_tried_to_pull_a_fast_one_but/
 
 export default App;

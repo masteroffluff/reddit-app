@@ -1,29 +1,37 @@
 import {createSlice} from '@reduxjs/toolkit';
-
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const redditURL = "https://www.reddit.com";
 
-const fetchArticleByPath= createAsyncThunk(
-    'article/getArticle',
+const redditURL = "http://www.reddit.com/";
+const orderBy = "hot/"
+
+//const fakejson = "../../fakejson/frontpage.json"
+
+export const fetchArticleByPath= createAsyncThunk(
+    'article/fetchArticleByPath',
     async (path) =>{
+       
         const endPoint = redditURL+path+".json"
+  
         const article = await fetch(endPoint);
-        const data = await article.json;
+        //const article = await fetch('https://www.reddit.com/r/gaming/comments/17jspv1/which_game_companies_tried_to_pull_a_fast_one_but/.json',{method:'GET'})
+        const data = await article.json();
+        
         return data;
 
     }
 )
-const appendArticleByPath= createAsyncThunk(
-    'article/getArticle',
-    async (path,after) =>{
+/* export const appendArticleByPath= createAsyncThunk(
+    'article/appendArticleByPath',
+    async (path,{getState}) =>{
+        const state = getState();
+        const after = state.article.replies.data.after
         const endPoint = redditURL+path+".json"
         const article = await fetch(endPoint);
         const data = await article.json;
         return data;
-
     }
-)
+) */
 
 
 
@@ -39,18 +47,20 @@ export const articleSlice = createSlice(
 
         },
         reducers:{},
-        extraReducers:{
-            extraReducers:(builder)=>{
+        extraReducers:
+            (builder)=>{
                 builder
                 .addCase(fetchArticleByPath.fulfilled,(state, action) => {
-                    state.article.article=action.payload["0"];
-                    state.article.replies=action.payload["1"];
+                    console.log(action.payload)
+                    state.article=action.payload["0"];
+                    
+                    state.replies=action.payload["1"];
                     state.isLoading = false;
                     state.hasError = false;
                     }
                 )
-                .addCase(appendArticleByPath.fulfilled,(state, action) => {
-                    let {data: stateData} = state.article
+/*                 .addCase(appendArticleByPath.fulfilled,(state, action) => {
+                    let {data: stateData} = state.article.replies.data
                     let {data: actionData, after:actionAfter} = action.payload
                     // update after
                     state.article.aricle=actionAfter
@@ -65,9 +75,8 @@ export const articleSlice = createSlice(
                     state.isLoading = false;
                     state.hasError = false;
                     }
-                )
-                .addMatcher(
-                    (action) => action.type.endsWith('/pending'),
+                ) */
+                .addCase(fetchArticleByPath.pending,
                     (state) => {
                         state.isLoading = true;
                         state.hasError = false;
@@ -83,12 +92,12 @@ export const articleSlice = createSlice(
                 )
             }
         }
-    })
+    )
     
 export const selectedArticle = (state) => state.article.article;
 export const selectedReplies = (state) => state.article.replies;
-export const isLoadingListing = (state) => state.article.isLoading;
-export const hasErrorListing = (state) => state.article.hasError;
+export const isLoadingArticle = (state) => state.article.isLoading;
+export const hasErrorArticle = (state) => state.article.hasError;
 
 
 

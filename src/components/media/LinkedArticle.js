@@ -2,7 +2,7 @@ import React from "react";
 
 export default function LinkedArticle({url,thumbnail, domain}){
     
-    if(thumbnail){
+    if(thumbnail&&thumbnail!=="default"){
         console.log()
     return (<>
         

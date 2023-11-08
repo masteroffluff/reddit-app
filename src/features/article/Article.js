@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import {useLocation, useParams } from 'react-router-dom';
-import articleSlice,{fetchArticleByPath,appendArticleByPath,selectedArticle,selectedReplies,isLoadingArticle,hasErrorArticle} from "./articleSlice";
+import {fetchArticleByPath,selectedArticle,selectedReplies,isLoadingArticle,hasErrorArticle} from "./articleSlice";
 import store from "../../app/store";
 import { useSelector } from 'react-redux';
 import Item from '../listing/Item';
+import Replies from '../../components/replies/Replies';
 
 export default function Article(){
     let {subredditName,id,articleName} = useParams();
@@ -33,7 +34,8 @@ export default function Article(){
     return(
     <>
         <Item thing={article.data.children[0]} />
-        {/* <Item thing = {article.data.children['0']} itemnumber={-1}/> */}
+
+        <Replies children={replies.data.children} />
     </>)
     
 }

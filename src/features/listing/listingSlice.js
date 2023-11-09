@@ -78,20 +78,20 @@ export const listingSlice = createSlice(
                 state.hasError = false;
                 }
             )
-            .addCase(
+/*             .addCase(
                 fetchListingByPath.pending,
                 (state) => {
                     state.isLoading = true;
                     state.hasError = false;
                 }
-            )            
-/*             .addMatcher(
+            )  */           
+            .addMatcher(
                 (action) => action.type.endsWith('/pending'),
                 (state) => {
                     state.isLoading = true;
                     state.hasError = false;
                 }
-            ) */
+            )
             .addMatcher(
                 (action) => action.type.endsWith('/rejected'),
                 (state, action) => {

@@ -28,9 +28,9 @@ export default function Listing(){
         console.log(store.getState().listing.listing.data)
     }
     
-    if (listIsLoadingSelector){
+/*     if (listIsLoadingSelector){
         return <h1>Loading</h1>
-    }
+    } */
     if (listingHasError){
         return <h1>Error</h1>
     }
@@ -40,6 +40,7 @@ export default function Listing(){
             <h2>Sub Reddit:{path} </h2>
             <ListingList listingObject={listing}/>
             <button onClick={handleContinue}>load more?</button>
+            {listIsLoadingSelector?<p>Loading...</p>:""}
         </>)
     }
     else {
@@ -47,8 +48,7 @@ export default function Listing(){
             <h1>Welcome to Reddit</h1>
             <p>come for the cats stay for the empathy</p>
             <ListingList listingObject={listing}/>
-            <button onClick={handleContinue}>load more?</button>
-            
+            <div className="loadig-button">{listIsLoadingSelector?<p>Loading...</p>:<button onClick={handleContinue}>Load More?</button>}</div>
         </>)
     }
 

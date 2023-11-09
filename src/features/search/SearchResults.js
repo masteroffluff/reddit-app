@@ -1,11 +1,11 @@
-
-
+import React from "react"
+import Listing from "../listing/Listing"
 
 
 
 
 export default function SearchResults(){
     return (<>
-        <p>SearchResults</p>
+        <Listing isSearch={true} />
     </>)
 }

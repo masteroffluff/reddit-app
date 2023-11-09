@@ -2,27 +2,30 @@ import {createSlice} from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 //import fs from "node:fs";
 
-const redditURL = "http://www.reddit.com/";
-const orderBy = "hot/"
+const redditURL = "http://www.reddit.com";
+const orderBy = "/hot/"
 
 //const fakejson = "../../fakejson/frontpage.json"
 
 export const fetchListingByPath= createAsyncThunk(
     'listing/fetchListingByPath',
-    async (path) =>{
-        //console.log(path);
-        const endPoint = redditURL+path+orderBy+".json?limit=50"
+    async ({path,searchTerm}) =>{
         
-        const listing = await fetch(endPoint,{method:'GET'});
-        //const listing = await fetch("http://www.reddit.com/r/amitheasshole/.json")
+        
+
+        const endPoint = redditURL+path+orderBy+".json?limit=50" + (searchTerm?"+q="+searchTerm:"")
+
+        //const listing = await fetch(endPoint,{method:'GET'});
+        const listing = await fetch("https://www.reddit.com/search/.json?limit=50+q=test")
         const data = await listing.json();
+        console.log(JSON.stringify(data))
         return data
 
     }
 )
 export const appendListingByPath= createAsyncThunk(
     'listing/appendListingByPath',
-    async (path,{getState}) =>{
+    async ({path,searchTerm},{getState}) =>{
         //console.log("after" ,after)
         const state = getState();
         const after = state.listing.listing.data.after

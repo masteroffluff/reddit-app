@@ -21,7 +21,7 @@ function App() {
           <Route index element= {<Listing />} />{/* front page */}
           <Route path="r/:subredditName/" element= {<Listing />} />  {/* Subreddit Listing */}
           <Route path="r/:subredditName/comments/:id/:articleName/" element={<Article />} /> {/* individual aricle */}
-          <Route path="search/" element={<SearchResults />} /> {/* Page for when the searchbar is invoked. */}
+          <Route path="search/" element={<Listing />} /> {/* Page for when the searchbar is invoked. */}
         </Route>
       </Routes>
     </BrowserRouter>

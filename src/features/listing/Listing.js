@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {useParams } from 'react-router-dom';
+import { useLocation,useParams, useSearchParams} from 'react-router-dom';
 import ListingList from './ListingList';
 import {fetchListingByPath,appendListingByPath, isLoadingListing, hasErrorListing,selectedListing } from './listingSlice'
 import store from "../../app/store";
@@ -8,13 +8,19 @@ import { useSelector } from 'react-redux';
 export default function Listing(){
     //const dispatch = useDispatch();
     let {subredditName} = useParams();
+    let {pathname:path} = useLocation();
+    let [searchParams, setSearchParams] = useSearchParams();
+    
 
-    let path = "/";
-    if (subredditName){path = "r/" + subredditName +"/"}
+    const searchTerm = searchParams.get("q")
+
+   
     useEffect(()=>{
         
-        store.dispatch(fetchListingByPath(path))}
-    ,[path])
+        //if (subredditName){path = "r/" + subredditName +"/"}
+
+        store.dispatch(fetchListingByPath({path, searchTerm}))}
+    ,[path,searchTerm])
 
     const listing =useSelector(selectedListing)
     
@@ -24,10 +30,37 @@ export default function Listing(){
     const listingHasError = useSelector(hasErrorListing)
 
     const handleContinue=()=>{
-        store.dispatch(appendListingByPath(path))
-        console.log(store.getState().listing.listing.data)
+        store.dispatch(appendListingByPath({path, searchTerm}))
+        //console.log(store.getState().listing.listing.data)
     }
     
+    function ListingHeader(){
+        if (!searchTerm){
+            if(subredditName){
+                return (<>
+                    <h2>Sub Reddit:{path} </h2>
+                </>)
+            }
+                return (<>
+                    <h1>Welcome to Reddit</h1>
+                    <p>come for the cats stay for the empathy</p>
+                </>)
+            }
+        if(subredditName){
+            return (<>
+                <h2>Search results in Sub Reddit:{path} </h2>
+            </>)
+        }
+            return (<>
+                <h2>Search Results:</h2>
+            </>)
+
+    }
+    
+
+
+
+
 /*     if (listIsLoadingSelector){
         return <h1>Loading</h1>
     } */

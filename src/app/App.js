@@ -10,7 +10,7 @@ import AppLayout from "./AppLayout";
 import Listing from "../features/listing/Listing";
 import Article from "../features/article/Article";
 // import FrontPage from "../features/listing/FrontPage";
-import SearchResults from "../features/search/SearchResults";
+//import SearchResults from "../features/search/SearchResults";
 
 
 function App() {

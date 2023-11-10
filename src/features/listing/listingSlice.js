@@ -11,12 +11,16 @@ export const fetchListingByPath= createAsyncThunk(
     'listing/fetchListingByPath',
     async ({path,searchTerm}) =>{
         
-        
-
-        const endPoint = redditURL+path+orderBy+".json?limit=50" + (searchTerm?"+q="+searchTerm:"")
-
-        //const listing = await fetch(endPoint,{method:'GET'});
-        const listing = await fetch("https://www.reddit.com/search/.json?limit=50+q=test")
+        let endPoint =""
+        if (searchTerm){
+            endPoint = redditURL+path+".json?limit=50" + (searchTerm?"&q="+searchTerm:"")
+        }
+        else{
+            endPoint = redditURL+path+orderBy+".json?limit=50"
+        }
+        console.log (endPoint)
+        const listing = await fetch(endPoint,{method:'GET'});
+        //const listing = await fetch("https://www.reddit.com/search/.json?limit=50&q=test")
         const data = await listing.json();
         console.log(JSON.stringify(data))
         return data
@@ -53,6 +57,8 @@ export const listingSlice = createSlice(
         (builder)=>{
             builder
             .addCase(fetchListingByPath.fulfilled,(state, action) => {
+               // if (state.listing.listing!=={}){Object.keys(state.listing.listing).forEach(key => delete state.listing.listing[key]);} // clear out old items 
+                
                 state.listing=action.payload;
                 state.isLoading = false;
                 state.hasError = false;

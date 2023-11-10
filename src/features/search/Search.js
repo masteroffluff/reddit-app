@@ -1,5 +1,5 @@
-import React,{useState,useEffect} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React,{useState} from "react";
+import {useNavigate } from "react-router-dom";
 
 
 
@@ -11,12 +11,12 @@ export default function Search(){
     const navigate = useNavigate()
     const handleSubmit=(e)=>{
         e.preventDefault();
-        const navigateTo = `/search?q=${searchTerm}`
+        const navigateTo = `/search?q=${searchTerm}&${nsfw?'include_over_18=on':''}`
         navigate(navigateTo)
     }
 
     const handleChangeSearchTerm=(e)=>{
-        setSearchTerm(e.target.value);
+        setSearchTerm(encodeURIComponent(e.target.value));
     }
     const handleChangeNSFW=(e)=>{
         setNsfw(e.target.value);

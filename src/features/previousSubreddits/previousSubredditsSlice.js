@@ -5,11 +5,14 @@ export const previousSubredditSlice = createSlice(
     {
         name:'previousSubreddit',
         initialState:{
-            previousSubreddit:{}
+            list:[]
         },
         reducers:{
             updatePreviousSubreddit:(state,action)=>{
-             
+                let {list} = state.previousSubreddit
+                const temp = [...list,action.payload]
+                list = temp.filter((value,index)=>temp.indexOf(value)===index)
+
             }
         }
     })

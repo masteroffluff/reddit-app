@@ -58,7 +58,8 @@ export const listingSlice = createSlice(
             builder
             .addCase(fetchListingByPath.fulfilled,(state, action) => {
                // if (state.listing.listing!=={}){Object.keys(state.listing.listing).forEach(key => delete state.listing.listing[key]);} // clear out old items 
-                
+                // look at the dpth and see if we can remove any entries greater than it
+                let {dist} = state.listing.data
                 state.listing=action.payload;
                 state.isLoading = false;
                 state.hasError = false;

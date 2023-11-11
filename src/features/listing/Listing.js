@@ -9,7 +9,7 @@ export default function Listing(){
     //const dispatch = useDispatch();
     let {subredditName} = useParams();
     let {pathname:path} = useLocation();
-    let searchParams = useSearchParams()[0];
+    let [searchParams, setSearchParams] = useSearchParams();
     
 
     const searchTerm = searchParams.get("q")
@@ -70,7 +70,16 @@ export default function Listing(){
     //console.log(listing)
     if(subredditName){
         return (<>
-            <ListingHeader />
+            <h2>Sub Reddit:{path} </h2>
+            <ListingList listingObject={listing}/>
+            <button onClick={handleContinue}>load more?</button>
+            {listIsLoadingSelector?<p>Loading...</p>:""}
+        </>)
+    }
+    else {
+        return (<>
+            <h1>Welcome to Reddit</h1>
+            <p>come for the cats stay for the empathy</p>
             <ListingList listingObject={listing}/>
             <div className="loadig-button">{listIsLoadingSelector?<p>Loading...</p>:<button onClick={handleContinue}>Load More?</button>}</div>
         </>)

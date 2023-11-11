@@ -1,11 +1,7 @@
 import React from "react";
 //import ReactHlsPlayer from "react-hls-player";
-//import VideoJS from "./VideoJS";
-
-//import videojs from "video.js";
-
-import VideoPlayer from "./VideoPlayer";
-
+import VideoJS from "./VideoJS";
+import videojs from "video.js";
 
 // can't get the sound to work :(
 export default function RedditVideo({media}){
@@ -23,7 +19,7 @@ export default function RedditVideo({media}){
 
         </>
     ) */
-    /* const playerRef = React.useRef(null); */
+    const playerRef = React.useRef(null);
 
     const videoJsOptions = {
       autoplay: false,
@@ -37,11 +33,23 @@ export default function RedditVideo({media}){
         type: "application/x-mpegURL"
       }]
     };
-
+  
+    const handlePlayerReady = (player) => {
+      playerRef.current = player;
+  
+      // You can handle player events here, for example:
+      player.on('waiting', () => {
+        videojs.log('player is waiting');
+      });
+  
+      player.on('dispose', () => {
+        videojs.log('player will dispose');
+      });
+    };
   
     return (
       <div className="reddit-video">
-        <VideoPlayer options={videoJsOptions} key={hls_url} />
+        <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
       </div>
     );
 

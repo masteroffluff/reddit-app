@@ -1,15 +1,14 @@
-/* import React, {useEffect} from 'react';
+import React from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
-export const VideoJS = ({onReady,options}) => {
+export const VideoJS = (props) => {
   const videoRef = React.useRef(null);
   const playerRef = React.useRef(null);
-  //const {options} = props;
+  const {options, onReady} = props;
 
-  useEffect(() => {
-    
-    //const onReady = props.onReady;
+  React.useEffect(() => {
+
     // Make sure Video.js player is only initialized once
     if (!playerRef.current) {
       // The Video.js player needs to be _inside_ the component el for React 18 Strict Mode. 
@@ -34,7 +33,7 @@ export const VideoJS = ({onReady,options}) => {
   }, [options, videoRef]);
 
   // Dispose the Video.js player when the functional component unmounts
-  useEffect(() => {
+  React.useEffect(() => {
     const player = playerRef.current;
 
     return () => {
@@ -52,4 +51,4 @@ export const VideoJS = ({onReady,options}) => {
   );
 }
 
-export default VideoJS; */
+export default VideoJS;

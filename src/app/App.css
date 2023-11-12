@@ -6,7 +6,8 @@
   .item{
     width: 750px;
     padding-left:100px;
-    border-bottom: 1px grey;
+    border-bottom: 1px solid grey;
+    box-shadow: 1px 0 5px #555 inset;
   }
 
   .image{
@@ -19,4 +20,5 @@
     padding-left:5px;
     margin-bottom:1px;
     border:1px solid grey;
+    box-shadow: 1px 0 5px #555 inset;
   }

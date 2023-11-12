@@ -1,10 +1,20 @@
 
 import React from "react";
-
-
+import { useSelector } from "react-redux";
+import {selectedPreviousSubreddit} from './previousSubredditsSlice'
+import { Link } from "react-router-dom";
 
 export default function PreviousSubreddits(){
+
+    const previousSubreddits = useSelector(selectedPreviousSubreddit)
+
     return (<>
-        <p>PreviousSubreddits</p>
+        <h2>PreviousSubreddits</h2>
+        <ul className="previous-subreddits-list">
+            {previousSubreddits.map((item,key)=>{
+                return<li key={key}> <Link to={item}>{item}</Link></li>
+            })}
+
+        </ul>
     </>)
 }

@@ -9,16 +9,20 @@ export const previousSubredditSlice = createSlice(
         },
         reducers:{
             updatePreviousSubreddit:(state,action)=>{
-                let {list} = state.previousSubreddit
-                const temp = [...list,action.payload]
-                list = temp.filter((value,index)=>temp.indexOf(value)===index)
+                
+                
+                
+                let {list} = state
+                if(!list.includes(action.payload)){
+                    list.push(action.payload)
+                }
 
             }
         }
     })
     
     
-
+export const selectedPreviousSubreddit = (state) => state.previousSubreddit.list;
 
 export const { updatePreviousSubreddit } = previousSubredditSlice.actions
 

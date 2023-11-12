@@ -1,4 +1,0 @@
-import React from 'react'
-import {updatePreviousSubreddit} from '../previousSubreddits/previousSubredditsSlice'
-import { Link } from 'react-router-dom'
-

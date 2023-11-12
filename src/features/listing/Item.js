@@ -5,7 +5,8 @@ import EmbeddedVideo from '../../components/media/EmbeddedVideo'
 import RedditVideo from "../../components/media/RedditVideo"
 import Gallery from '../../components/media/Gallery'
 import LinkedArticle from '../../components/media/LinkedArticle'
-
+import {updatePreviousSubreddit} from '../previousSubreddits/previousSubredditsSlice'
+import { useDispatch } from 'react-redux'
 
 //var parse = require('html-react-parser');
 
@@ -30,11 +31,17 @@ export default function Item({thing, itemnumber}){
         media_metadata,
         permalink,
     } = thing.data
-    
+    const dispatch = useDispatch();
 
     // turn the selftext_html to parseabel html
     const selftext_htmlFixed = selftext_html?parse(parse(selftext_html)):"" // parsed once to un escape the characters and once to run the html
     
+    const handleSRListUpdate=()=>{
+        //alert(subreddit_name_prefixed)
+        dispatch(updatePreviousSubreddit(subreddit_name_prefixed))
+    }
+
+
     // handle the different types of media
     const mediaDeflibulator=()=>{
         if (crosspost_parent_list !==undefined){
@@ -82,7 +89,7 @@ export default function Item({thing, itemnumber}){
     return (
         <div>
             <h3>{title}</h3><Link to={permalink}> Go there</Link>
-            <h4>by {author} in <Link to={"/"+subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
+            <h4>by {author} in <Link onClick={handleSRListUpdate} to={"/"+subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
             <div className='mediaContainer'>{mediaDeflibulator()}</div>
             <div>{selftext_htmlFixed}</div>
             

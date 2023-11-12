@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import Search from "../features/search/Search";
-import logo from './logo.svg';
+import logo from '../logo.svg';
 
 import PreviousSubreddits from "../features/previousSubreddits/PreviousSubreddits";
 

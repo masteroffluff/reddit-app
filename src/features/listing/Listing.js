@@ -68,7 +68,7 @@ export default function Listing(){
         return <h1>Error</h1>
     }
     //console.log(listing)
-    if(subredditName){
+/*     if(subredditName){
         return (<>
             <h2>Sub Reddit:{path} </h2>
             <ListingList listingObject={listing}/>
@@ -83,7 +83,13 @@ export default function Listing(){
             <ListingList listingObject={listing}/>
             <div className="loadig-button">{listIsLoadingSelector?<p>Loading...</p>:<button onClick={handleContinue}>Load More?</button>}</div>
         </>)
-    }
-
+    } */
+    return (
+        <div className='listing'>
+            <ListingHeader />
+            <ListingList listingObject={listing}/>
+            <div className="loadig-button">{listIsLoadingSelector?<p>Loading...</p>:<button onClick={handleContinue}>Load More?</button>}</div>
+        </div>
+    )
 
 }

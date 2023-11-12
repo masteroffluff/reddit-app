@@ -8,7 +8,7 @@ export default function PreviousSubreddits(){
 
     const previousSubreddits = useSelector(selectedPreviousSubreddit)
 
-    return (<>
+    return (<div className="previous-subreddits">
         <h2>PreviousSubreddits</h2>
         <ul className="previous-subreddits-list">
             {previousSubreddits.map((item,key)=>{
@@ -16,5 +16,5 @@ export default function PreviousSubreddits(){
             })}
 
         </ul>
-    </>)
+    </div>)
 }

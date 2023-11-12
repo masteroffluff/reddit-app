@@ -1,24 +1,72 @@
+body{
+  color:antiquewhite;
+  background-color: #151515;
+
+}
+
+a:link{
+  color:red;
+}
+a:visited{
+  color: darkred;
+}
+a:hover{
+  color:lightpink
+}
+a:active{
+  color: white;
+}
+
+
 .embeddedVideo{
     width: 500px;
     display: block;
   }
   
-  .item{
-    width: 750px;
-    padding-left:100px;
-    border-bottom: 1px solid grey;
-    box-shadow: 1px 0 5px #555 inset;
-  }
+.article, .item{
+  width: 750px;
+  margin-left:75px;
+  padding:25px;
+}
 
-  .image{
-    min-width:500px;
-    height:100%;
-    
-  }
+.item, .reply{
+  border:1px solid grey;
+  box-shadow: 1px 1px 2px #555 inset;
+}
 
-  .reply{
-    padding-left:5px;
-    margin-bottom:1px;
-    border:1px solid grey;
-    box-shadow: 1px 0 5px #555 inset;
-  }
+
+.item{
+  display:flex;
+  width: 750px;
+  margin-left:75px;
+  padding:25px;
+
+}
+
+.image{
+  min-width:500px;
+  height:100%;
+  
+}
+
+.reply{
+  padding-left:5px;
+  margin-bottom:2px
+}
+
+main{
+  display:flex;
+  /*     border:red 1px solid; */
+/*   align-content: center;
+  justify-content: center; */
+}
+.previous-subreddits{
+  display:flexbox;
+  margin:10px
+}
+.outlet {
+  display:flex;
+}
+/* head{
+
+} */

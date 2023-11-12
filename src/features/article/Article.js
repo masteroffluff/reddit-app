@@ -32,11 +32,11 @@ export default function Article(){
         return <p>something aint right</p>
     }
     return(
-    <>
+    <div className='article'>
         <Item thing={article.data.children[0]} />
 
         <Replies children={replies.data.children} />
-    </>)
+    </div>)
     
 }
 

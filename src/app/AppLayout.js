@@ -1,17 +1,23 @@
 import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import Search from "../features/search/Search";
-import logo from "../logo.svg"
+import logo from './logo.svg';
+
 import PreviousSubreddits from "../features/previousSubreddits/PreviousSubreddits";
+
 
 export default function AppLayout(){
     return (
         <div>
+            
             <header> 
-                <img alt="logo" src={logo} />
+            <NavLink to = "/">
+            <img src={logo} className="App-logo" alt="logo" />
+            </NavLink>
                 <Search />
             </header>
             <nav>
+                <h2>Reccomended</h2>
                 <ul>
                 <li><NavLink to = "/">Front Page</NavLink></li>
                 <li><NavLink to = "/r/pics">PICS</NavLink></li>
@@ -21,8 +27,8 @@ export default function AppLayout(){
                 </ul>
             </nav>
             <main>
-                <PreviousSubreddits />
-                <Outlet />
+                <div><PreviousSubreddits /></div>
+                <div className="outlet"><Outlet /></div>
             </main>
         </div>
     )

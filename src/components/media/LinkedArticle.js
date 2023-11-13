@@ -2,8 +2,15 @@ import React from "react";
 
 export default function LinkedArticle({url,thumbnail, domain}){
     
+    if(domain==="i.imgur.com"){
+        return <img className="image" src={url} alt={url} />
+    }
+
+
+
+
     if(thumbnail&&thumbnail!=="default"){
-        console.log()
+        
     return (<>
         
     <a href={url} target="_blank" rel="noopener noreferrer">

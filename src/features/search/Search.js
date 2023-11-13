@@ -22,12 +22,13 @@ export default function Search(){
         setNsfw(e.target.value);
     }
 
-    return (<>
+    return (<div className="search">
         <form onSubmit = {handleSubmit}>
-        <input type="text" onChange={handleChangeSearchTerm} value={searchTerm}/>
-        <input type="checkbox" onChange={handleChangeNSFW} value={nsfw} />
-
+        <label htmlFor="search">Search: </label>
+        <input name='search' type="text" onChange={handleChangeSearchTerm} height="100%" value={searchTerm}/>
+        <label htmlFor="NSFW">NSFW</label>
+        <input name="NSFW" type="checkbox" onChange={handleChangeNSFW} value={nsfw} />
 
         </form>
-    </>)
+    </div>)
 }

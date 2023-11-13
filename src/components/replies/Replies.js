@@ -12,7 +12,7 @@ export default function Replies({children}){
             if (author) {
             return(
             <div key = {k} className="reply">
-                <p className='author'>{author}{k}:</p>
+                <p className='author'>{author}:</p>
                 <p className='reply-body'> {bodyFixed}</p>
                 {replies?<Replies key={k} children={replies.data.children} />:""}
             </div>

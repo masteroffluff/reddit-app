@@ -48,7 +48,7 @@ export default function RedditVideo({media}){
     };
   
     return (
-      <div className="reddit-video embedded-video">
+      <div className="reddit-video video">
         <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
       </div>
     );

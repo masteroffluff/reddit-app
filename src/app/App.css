@@ -142,7 +142,7 @@ header a{
 } */
 .mediaContainer img{
   max-width:1000px;
-  max-height:1000px;
+  /* max-height:1000px; */
   display: block;
   width: 100%;
   height: auto;

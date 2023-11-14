@@ -88,11 +88,12 @@ export default function Item({thing, itemnumber}){
     
     return (
         <div>
-            <h3>{title}</h3><Link to={permalink}> Go there</Link>
+            <h3>{title}</h3>
             <h4>by {author} in <Link onClick={handleSRListUpdate} to={"/"+subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
             <div className='mediaContainer'>{mediaDeflibulator()}</div>
             <div>{selftext_htmlFixed}</div>
-            
+            <br />
+            <Link to={permalink}> Go to Comments</Link>
         </div>)
 }
 

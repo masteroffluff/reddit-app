@@ -19,7 +19,7 @@ export default function EmbeddedVideo ({media}){
         //alert (videoElement)
         return (
             <>
-            <div className="video">
+            <div className="video live-video">
                 <iframe src={src} frameborder="0" title={title} allowFullScreen></iframe>
                 
             </div>

@@ -11,9 +11,13 @@ export default function AppLayout(){
         <div>
             
             <header> 
-            <NavLink to = "/">
-            <img src={logo} className="App-logo" alt="logo" />
-            </NavLink>
+                <NavLink to = "/">
+                    <img src={logo} className="App-logo" alt="logo" />
+                </NavLink>
+                
+                <NavLink to = "/">
+                    <h1>Fluffit</h1>
+                </NavLink>
                 <Search />
             </header>
             <nav>

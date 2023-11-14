@@ -27,7 +27,7 @@ export default function Search(){
         <label htmlFor="search">Search: </label>
         <input name='search' type="text" onChange={handleChangeSearchTerm} height="100%" value={searchTerm}/>
         <label htmlFor="NSFW">NSFW</label>
-        <input name="NSFW" type="checkbox" onChange={handleChangeNSFW} value={nsfw} />
+        <input className="checkbox1" name="NSFW" type="checkbox" onChange={handleChangeNSFW} value={nsfw} />
 
         </form>
     </div>)

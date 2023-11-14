@@ -2,7 +2,7 @@ import React from "react";
 
 export default function LinkedArticle({url,thumbnail, domain}){
     
-    if(domain==="i.imgur.com"){
+    if(domain==="i.imgur.com"||domain.includes('l3n.co')){
         return <img className="image" src={url} alt={url} />
     }
 

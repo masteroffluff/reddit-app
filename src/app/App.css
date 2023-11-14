@@ -50,6 +50,7 @@ header a{
 .item, .reply, nav, main,.outlet, .previous-subreddits{
   border:1px solid grey;
   box-shadow: 1px 1px 2px #555 inset;
+  padding-right:1px;
 }
 
 
@@ -122,7 +123,9 @@ header a{
   height:20px;
   width:auto;
 }
-  
+.article{
+ display: flexbox;
+}
 .article, .item{
   max-width: 1000px;
 
@@ -155,7 +158,8 @@ header a{
   margin-bottom:2px
 }
 nav{
-  margin-top:100px
+  margin-top:120px;
+  margin-right:10px;
 }
 nav li{
   display: inline;
@@ -175,7 +179,7 @@ main{
   margin:10px
 }
 .outlet {
-  /* display:flex; */
+
   width:100%;
   margin:10px
 }

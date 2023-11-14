@@ -9,7 +9,7 @@ export default function Gallery({gallery_data, title, media_metadata}){
     
     const src=()=>{
         const {media_id} = items[indexNo]
-        const {e,m} = media_metadata[media_id]
+        const {m} = media_metadata[media_id]
         // e is the media type eg. image
         // m is the html type
        // if (e=="image"){

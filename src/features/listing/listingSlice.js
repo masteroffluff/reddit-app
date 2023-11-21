@@ -96,14 +96,14 @@ export const listingSlice = createSlice(
                 }
             )  */           
             .addMatcher(
-                (action) => action.type.endsWith('/pending'),
+                (action) => action.type?.endsWith('/pending'),
                 (state) => {
                     state.isLoading = true;
                     state.hasError = false;
                 }
             )
             .addMatcher(
-                (action) => action.type.endsWith('/rejected'),
+                (action) => action.type?.endsWith('/rejected'),
                 (state, action) => {
                     console.log(action)
                     state.isLoading = false;

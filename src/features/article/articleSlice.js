@@ -83,7 +83,7 @@ export const articleSlice = createSlice(
                     }
                 )
                 .addMatcher(
-                    (action) => action.type.endsWith('/rejected'),
+                    (action) => action.type?.endsWith('/rejected'),
                     (state, action) => {
                         console.log(action)
                         state.isLoading = false;

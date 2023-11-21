@@ -1,13 +1,14 @@
 import reducer,{fetchListingByPath} from "./listingSlice"
 
-
-it("should return an empty object when run",() => {
+describe('Test suite for List component', () => {
+it("should return an initial object when run",() => {
     const resultObject = {
         listing:  {},
+        after:"",
         isLoading: false,
         hasError: false
     }
-    expect(reducer(undefined, { type: undefined })).toEqual(resultObject)
+    expect(reducer(undefined, {type:"placeholder"})).toEqual(resultObject)
 
 }
 
@@ -20,9 +21,9 @@ it("should add a listing for the front page when called",  async () => {
         isLoading: false,
         hasError: false
     }   
-   expect(await reducer(previousState, fetchListingByPath("/"))).not.toEqual(previousState)
+   expect(await reducer(previousState, await fetchListingByPath("/"))).not.toEqual(previousState)
 
 }
 
 
-)
+)})

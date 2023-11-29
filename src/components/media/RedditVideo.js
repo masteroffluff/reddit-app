@@ -22,14 +22,13 @@ export default function RedditVideo({media}){
     const playerRef = React.useRef(null);
 
     const videoJsOptions = {
-      preload:'none',
+      //preload:'none',
       autoplay: false,
       controls: true,
       responsive: true,
-      //fluid:true,
-      fill:true,
-      width:width,
-      height:height,
+      fluid:true,
+/*       width:width,
+      height:height, */
       sources: [{
         src: hls_url,
         type: "application/x-mpegURL"
@@ -48,10 +47,13 @@ export default function RedditVideo({media}){
         videojs.log('player will dispose');
       });
     };
-  
+    
+    
+
+
     return (
       <div className="reddit-video video">
-        <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+        <VideoJS options={videoJsOptions} onReady={handlePlayerReady} width={width} height={height} />
       </div>
     );
 

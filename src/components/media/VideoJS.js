@@ -5,7 +5,7 @@ import 'video.js/dist/video-js.css';
 export const VideoJS = (props) => {
   const videoRef = React.useRef(null);
   const playerRef = React.useRef(null);
-  const {options, onReady} = props;
+  const {options, onReady, width, height} = props;
 
   React.useEffect(() => {
 
@@ -45,10 +45,21 @@ export const VideoJS = (props) => {
   }, [playerRef]);
 
   return (
-    <div data-vjs-player>
-      <div ref={videoRef} />
+    <div data-vjs-player style={{
+   //   minWidth: '400px', // Adjust the minimum width as needed
+      width: width,
+   //   height: 'auto',
+   //   minHeight:'500px',
+      height:height,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      objectFit:'contain',
+    }}>
+      <div ref={videoRef} className='videoRef'/>
     </div>
   );
 }
 
 export default VideoJS;
+// 

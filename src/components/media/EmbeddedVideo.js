@@ -3,7 +3,7 @@ import React, {useState} from "react";
 
 
 export default function EmbeddedVideo ({media}){
-    const {html, title, thumbnail_url} = media.oembed;
+    const {html, title, thumbnail_url, height,width} = media.oembed;
     //const html = (dummyVideo)
     const [loadVideo, setLoadVideo]= useState(false);
 
@@ -14,12 +14,12 @@ export default function EmbeddedVideo ({media}){
     const handleClick=()=>{
         setLoadVideo(!loadVideo)
     }
- 
+    const paddingPercentage = `${height / width * 100}%`
     if (loadVideo){
         //alert (videoElement)
         return (
             <>
-            <div className="video live-video">
+            <div className="video live-video" style={{paddingBottom:paddingPercentage}}>
                 <iframe src={src} frameborder="0" title={title} allowFullScreen></iframe>
                 
             </div>
@@ -27,7 +27,7 @@ export default function EmbeddedVideo ({media}){
             </>)
     }else{
         return(
-            <div className="video">
+            <div className="video visualMediaContainer">
                 <img src={thumbnail_url} className="image" onClick={handleClick} alt={title} />
             </div>
         )

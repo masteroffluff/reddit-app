@@ -33,7 +33,7 @@ export default function Gallery({gallery_data, title, media_metadata}){
 
     return (<>
         <p>gallery</p>
-        <img className="image" src={src()} alt={title+indexNo}/>
+        <div className='visualMediaContainer'><img className="image" src={src()} alt={title+indexNo}/></div>
         <br></br>
         <span><button disabled={indexNo<=0} onClick={handleClickPrev} >prev</button><button disabled={indexNo>=items.length-1} onClick={handleClickNext}>next</button></span>
     </>)

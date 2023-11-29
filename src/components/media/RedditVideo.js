@@ -6,7 +6,7 @@ import videojs from "video.js";
 // can't get the sound to work :(
 export default function RedditVideo({media}){
      //const videoURL = media.reddit_video.fallback_url
-    const {hls_url} = media.reddit_video
+    const {hls_url, width, height} = media.reddit_video
  /*   return (
         <>
             <ReactHlsPlayer
@@ -22,12 +22,14 @@ export default function RedditVideo({media}){
     const playerRef = React.useRef(null);
 
     const videoJsOptions = {
+      preload:'none',
       autoplay: false,
       controls: true,
       responsive: true,
-      width:"auto",
-      height:"auto",
-      fluid: true,
+      //fluid:true,
+      fill:true,
+      width:width,
+      height:height,
       sources: [{
         src: hls_url,
         type: "application/x-mpegURL"

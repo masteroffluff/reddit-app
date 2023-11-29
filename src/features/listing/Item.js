@@ -14,6 +14,11 @@ import { useDispatch } from 'react-redux'
 
 
 export default function Item({thing, itemnumber}){
+    
+    const dispatch = useDispatch();
+
+    if(!thing.data){return <div className='mediaContainer'><p>error</p></div>}
+
     const {
         title,
         author,
@@ -30,8 +35,9 @@ export default function Item({thing, itemnumber}){
         gallery_data,
         media_metadata,
         permalink,
+        preview,
     } = thing.data
-    const dispatch = useDispatch();
+    
 
     // turn the selftext_html to parseabel html
     const selftext_htmlFixed = selftext_html?parse(parse(selftext_html)):"" // parsed once to un escape the characters and once to run the html
@@ -42,31 +48,32 @@ export default function Item({thing, itemnumber}){
     }
 
 
-    // handle the different types of media
+    // handle the different types of media, deflibulator is totally a word
     const mediaDeflibulator=()=>{
         if (crosspost_parent_list !==undefined){
             
             const newThing={data:crosspost_parent_list[`0`]}
             //console.log(newThing)
-            return (<>
+            return (<div className="cross-post">
                 <code>cross post</code>
                 <Item thing={newThing}></Item>
-            </>)
+            </div>)
             
         }
         if (is_self){
             return; // this is a self post no media neded
         }
+
         if (is_reddit_media_domain) {
             switch (domain){
                 case "i.redd.it":
                     // single image hosed by reddit
-                    return (<>
+                    return (<div className='visualMediaContainer'>
                         <img src={url} alt={title} />
-                    </>)
+                    </div>)
                 case "v.redd.it":
 
-                    return <RedditVideo media={media} />
+                    return <div className='visualMediaContainer'><RedditVideo media={media} /></div>
                 default:
                     return <code> unidentified reddit domain {domain}</code>
             }
@@ -76,12 +83,12 @@ export default function Item({thing, itemnumber}){
         }
         if (media!=null){
             //return <code>Embedded media</code>
-            return <EmbeddedVideo media={media} />
+            return <div className='visualMediaContainer'><EmbeddedVideo media={media} /></div>
         }
         
         // if its nothing else then its a linked article
         
-        return <LinkedArticle url={url} thumbnail={thumbnail} domain={domain} />;
+        return <LinkedArticle url={url} thumbnail={thumbnail} domain={domain} preview={preview}/>;
         
 
     }

@@ -9,7 +9,7 @@ import Replies from '../../components/replies/Replies';
 export default function Article(){
     let {subredditName,id,articleName} = useParams();
     let {pathname:path} = useLocation();
-    
+    // update list of subreddits
     useEffect(()=>{
         
         store.dispatch(fetchArticleByPath(path))}

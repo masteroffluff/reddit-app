@@ -26,7 +26,7 @@ export default function RedditVideo({media}){
       autoplay: false,
       controls: true,
       responsive: true,
-      fluid:true,
+      fluid:false,
 /*       width:width,
       height:height, */
       sources: [{

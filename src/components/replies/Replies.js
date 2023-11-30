@@ -16,7 +16,9 @@ export default function Replies({children}){
                 <p className='reply-body'> {bodyFixed}</p>
                 {replies?<Replies key={k} children={replies.data.children} />:""}
             </div>
-            )}})}
+            )}
+            else {return <></>};
+            })}
         </p>
     </>)
 }

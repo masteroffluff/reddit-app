@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 //import fs from "node:fs";
 
-const redditURL = "http://www.reddit.com";
+const redditURL = "https://www.reddit.com";
 const orderBy = "/hot/"
 
 //const fakejson = "../../fakejson/frontpage.json"

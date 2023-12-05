@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 
 const redditURL = "http://www.reddit.com/";
-const orderBy = "hot/"
+// const orderBy = "hot/"
 
 //const fakejson = "../../fakejson/frontpage.json"
 

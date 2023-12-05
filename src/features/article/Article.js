@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {useLocation, useParams } from 'react-router-dom';
+import {useLocation } from 'react-router-dom';
 import {fetchArticleByPath,selectedArticle,selectedReplies,isLoadingArticle,hasErrorArticle} from "./articleSlice";
 import store from "../../app/store";
 import { useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import Item from '../listing/Item';
 import Replies from '../../components/replies/Replies';
 
 export default function Article(){
-    let {subredditName,id,articleName} = useParams();
+    //let {subredditName,id,articleName} = useParams();
     let {pathname:path} = useLocation();
     // update list of subreddits
     useEffect(()=>{
@@ -28,7 +28,7 @@ export default function Article(){
         return <h1>Error</h1>
     }
     
-    if (article.data===undefined){
+    if (article.data===undefined&&!listIsLoadingSelector){
         return <p>something aint right</p>
     }
     return(

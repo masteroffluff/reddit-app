@@ -9,7 +9,7 @@ export default function Listing(){
     //const dispatch = useDispatch();
     let {subredditName} = useParams();
     let {pathname:path} = useLocation();
-    let [searchParams, setSearchParams] = useSearchParams();
+    let [searchParams] = useSearchParams();
     
 
     const searchTerm = searchParams.get("q")

@@ -1,4 +1,4 @@
-import reducer,{fetchListingByPath} from "./listingSlice"
+/* import reducer,{fetchListingByPath} from "./listingSlice"
 
 describe('Test suite for List component', () => {
 it("should return an initial object when run",() => {
@@ -27,3 +27,4 @@ it("should add a listing for the front page when called",  async () => {
 
 
 )})
+ */

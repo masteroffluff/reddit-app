@@ -10,8 +10,13 @@ export default function LinkedArticle({url,title,thumbnail, domain, preview}){
     if(domain==="i.imgur.com"){
         const extension = String(url).split('.').pop();
         if(extension.toLowerCase() === "gifv"){
-            
-            const mediaObject = {'reddit_video':preview.reddit_video_preview}
+            let mediaObject;
+            if (preview.reddit_video_preview){
+                mediaObject = {reddit_video:preview.reddit_video_preview}
+            }
+            else {
+                mediaObject = {reddit_video:preview.images[`0`].source}
+            }
             return <div className='visualMediaContainer'><RedditVideo media={mediaObject} /></div>
         }
         return <div className='visualMediaContainer'><img className="image" src={url} alt={url + " " + extension} /></div>

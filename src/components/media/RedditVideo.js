@@ -6,6 +6,8 @@ import videojs from "video.js";
 // can't get the sound to work :(
 export default function RedditVideo({media}){
      //const videoURL = media.reddit_video.fallback_url
+    const playerRef = React.useRef(null); 
+    if (!media.reddit_video){return <div>video error</div>}
     const {hls_url, width, height} = media.reddit_video
  /*   return (
         <>
@@ -19,7 +21,7 @@ export default function RedditVideo({media}){
 
         </>
     ) */
-    const playerRef = React.useRef(null);
+    
 
     const videoJsOptions = {
       //preload:'none',

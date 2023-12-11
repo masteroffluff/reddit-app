@@ -11,12 +11,13 @@ export default function Search(){
     const navigate = useNavigate()
     const handleSubmit=(e)=>{
         e.preventDefault();
-        const navigateTo = `/search?q=${searchTerm}&${nsfw?'include_over_18=on':''}`
+        
+        const navigateTo = `/search?q=${encodeURIComponent(searchTerm)}&${nsfw?'include_over_18=on':''}`
         navigate(navigateTo)
     }
 
     const handleChangeSearchTerm=(e)=>{
-        setSearchTerm(encodeURIComponent(e.target.value));
+        setSearchTerm(e.target.value);
     }
     const handleChangeNSFW=(e)=>{
         setNsfw(e.target.value);

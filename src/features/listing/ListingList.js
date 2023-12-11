@@ -3,7 +3,7 @@ import React from "react";
 
 export default function ListingList({listingObject}){
     if (listingObject.data===undefined){
-        return <p>something aint right</p>
+        return <p>please wait</p>
     }
     
 return(

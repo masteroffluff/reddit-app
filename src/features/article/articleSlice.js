@@ -9,16 +9,18 @@ const redditURL = "https://www.reddit.com/";
 
 export const fetchArticleByPath= createAsyncThunk(
     'article/fetchArticleByPath',
-    async (path) =>{
-       
-        const endPoint = redditURL+path+".json"
-  
-        const article = await fetch(endPoint);
-        //const article = await fetch('https://www.reddit.com/r/gaming/comments/17jspv1/which_game_companies_tried_to_pull_a_fast_one_but/.json',{method:'GET'})
-        const data = await article.json();
-        
-        return data;
+    async (path,{rejectWithValue}) =>{
 
+        const endPoint = redditURL+path+".json"
+        return fetch(endPoint, { method: 'GET' })
+            .then(async (article) => {
+                if(article.ok){return article.json()}
+                throw new Error('Something went wrong')})
+            .then((data) => {
+                console.log(JSON.stringify(data))
+                return data
+            })
+            .catch((e) => rejectWithValue(e))
     }
 )
 /* export const appendArticleByPath= createAsyncThunk(
@@ -82,8 +84,7 @@ export const articleSlice = createSlice(
                         state.hasError = false;
                     }
                 )
-                .addMatcher(
-                    (action) => action.type?.endsWith('/rejected'),
+                .addCase(fetchArticleByPath.rejected,
                     (state, action) => {
                         console.log(action)
                         state.isLoading = false;

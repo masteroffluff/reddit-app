@@ -9,6 +9,7 @@ import './App.css'
 import AppLayout from "./AppLayout";
 import Listing from "../features/listing/Listing";
 import Article from "../features/article/Article";
+import Test from "../components/media/Test"
 // import FrontPage from "../features/listing/FrontPage";
 //import SearchResults from "../features/search/SearchResults";
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="r/:subredditName/" element= {<Listing />} />  {/* Subreddit Listing */}
           <Route path="r/:subredditName/comments/:id/:articleName/" element={<Article />} /> {/* individual aricle */}
           <Route path="search/" element={<Listing />} /> {/* Page for when the searchbar is invoked. */}
+          <Route path="test/" element={<Test />} /> {/* test route */}
         </Route>
       </Routes>
     </BrowserRouter>

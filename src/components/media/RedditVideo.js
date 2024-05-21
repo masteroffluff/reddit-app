@@ -55,7 +55,8 @@ export default function RedditVideo({media}){
 
     return (
       <div className="reddit-video video">
-        <VideoJS options={videoJsOptions} onReady={handlePlayerReady} width={width} height={height} />
+       {/*  <VideoJS options={videoJsOptions} onReady={handlePlayerReady} width={width} height={height} /> */}
+       <VideoJS options={videoJsOptions} onReady={handlePlayerReady} width={width} height={height} />
       </div>
     );
 

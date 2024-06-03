@@ -14,8 +14,6 @@ export default function Listing(){
     
 
     const searchTerm = searchParams.get("q")
-
-   
     useEffect(()=>{
         
         //if (subredditName){path = "r/" + subredditName +"/"}
@@ -38,23 +36,23 @@ export default function Listing(){
     function ListingHeader(){
         if (!searchTerm){
             if(subredditName){
-                return (<>
+                return (<div class="listing-header">
                     <h2>Sub Reddit:{path} </h2>
-                </>)
+                </div>)
             }
-                return (<>
+                return (<div class="listing-header">
                     <h1>Welcome to Reddit</h1>
                     <p>come for the cats stay for the empathy</p>
-                </>)
+                </div>)
             }
         if(subredditName){
-            return (<>
+            return (<div class="listing-header">
                 <h2>Search results in Sub Reddit:{path} </h2>
-            </>)
+            </div>)
         }
-            return (<>
+            return (<div class="listing-header">
                 <h2>Search Results:</h2>
-            </>)
+            </div>)
 
     }
     // component to handle the lists

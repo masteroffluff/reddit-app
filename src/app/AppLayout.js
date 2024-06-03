@@ -16,7 +16,7 @@ export default function AppLayout(){
                 </NavLink>
                 
                 <NavLink to = "/">
-                    <h1>Fluffit</h1>
+                    <h1>Reddit Browser</h1>
                 </NavLink>
                 <Search />
             </header>

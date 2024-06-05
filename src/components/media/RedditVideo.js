@@ -25,47 +25,47 @@ export default function RedditVideo({ media }) {
     const handlePlayerReady = (player) => {
         playerRef.current = player;
 
-        player.on('waiting', () => {
-            videojs.log('player is waiting');
-        });
+        // player.on('waiting', () => {
+        //     videojs.log('player is waiting');
+        // });
 
-        player.on('dispose', () => {
-            videojs.log('player will dispose');
-        });
+        // player.on('dispose', () => {
+        //     videojs.log('player will dispose');
+        // });
 
-        // Add event listeners for debugging
-        player.on('error', () => {
-            const error = player.error();
-            videojs.log('Error:', error);
-        });
+        // // Add event listeners for debugging
+        // player.on('error', () => {
+        //     const error = player.error();
+        //     videojs.log('Error:', error);
+        // });
 
-        player.on('loadstart', () => {
-            videojs.log('Loading started');
-        });
+        // player.on('loadstart', () => {
+        //     videojs.log('Loading started');
+        // });
 
-        player.on('loadeddata', () => {
-            videojs.log('Data loaded');
-        });
+        // player.on('loadeddata', () => {
+        //     videojs.log('Data loaded');
+        // });
 
-        player.on('loadedmetadata', () => {
-            videojs.log('Metadata loaded');
-        });
+        // player.on('loadedmetadata', () => {
+        //     videojs.log('Metadata loaded');
+        // });
 
-        player.on('canplay', () => {
-            videojs.log('Can play');
-        });
+        // player.on('canplay', () => {
+        //     videojs.log('Can play');
+        // });
 
-        player.on('playing', () => {
-            videojs.log('Playing');
-        });
+        // player.on('playing', () => {
+        //     videojs.log('Playing');
+        // });
 
-        player.on('pause', () => {
-            videojs.log('Paused');
-        });
+        // player.on('pause', () => {
+        //     videojs.log('Paused');
+        // });
 
-        player.on('ended', () => {
-            videojs.log('Ended');
-        });
+        // player.on('ended', () => {
+        //     videojs.log('Ended');
+        // });
     };
 
     return (

@@ -1,6 +1,6 @@
 import React from "react";
 import VideoJS from "./VideoJS";
-import videojs from "video.js";
+//import videojs from "video.js";
 
 export default function RedditVideo({ media }) {
     const playerRef = React.useRef(null);

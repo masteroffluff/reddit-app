@@ -39,10 +39,3 @@ export default function Gallery({gallery_data, title, media_metadata}){
     </>)
 }
 
-//https://i.redd.it/yz9hecfv1dt61.jpg
-
-// steps 
-// get id from index number 
-// get type from media_metadata
-// image path is
-//https://i.redd.it/<id goes here>.png

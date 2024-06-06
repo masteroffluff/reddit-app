@@ -1,6 +1,6 @@
 import parse from 'html-react-parser'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import EmbeddedVideo from '../../components/media/EmbeddedVideo'
 import RedditVideo from "../../components/media/RedditVideo"
 import Gallery from '../../components/media/Gallery'
@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux'
 export default function Item({thing, itemnumber}){
     
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     if(!thing.data){return <div className='mediaContainer'><p>error</p></div>}
 
@@ -47,6 +48,9 @@ export default function Item({thing, itemnumber}){
         dispatch(updatePreviousSubreddit(subreddit_name_prefixed))
     }
 
+    const titleClick=()=>{
+        navigate(permalink)
+    }
 
     // handle the different types of media, deflibulator is totally a word
     const mediaDeflibulator=()=>{
@@ -83,7 +87,7 @@ export default function Item({thing, itemnumber}){
         }
         if (media!=null){
             //return <code>Embedded media</code>
-            return <div className='visualMediaContainer'><EmbeddedVideo media={media} /></div>
+            return <div className='visualMediaContainer'><EmbeddedVideo media={media} thumbnail={thumbnail} /></div>
         }
         
         // if its nothing else then its a linked article
@@ -95,7 +99,7 @@ export default function Item({thing, itemnumber}){
     
     return (
         <div>
-            <h3>{title}</h3>
+            <h3 onClick={titleClick}>{title}</h3>
             <h4>by {author} in <Link onClick={handleSRListUpdate} to={"/"+subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
             <div className='mediaContainer'>{mediaDeflibulator()}</div>
             <div>{selftext_htmlFixed}</div>

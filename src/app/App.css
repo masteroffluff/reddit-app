@@ -12,7 +12,7 @@ h6 {font-size:  0.7rem;}
 body{
   color:azure;
   background-color: #151515;
-  font-family: 'OpenDyslexicRegular';
+  font-family: 'OpenDyslexicMonoRegular','Tahoma', 'sans-serif';
   font-weight: normal;
   font-style: normal;
 
@@ -66,7 +66,7 @@ header a{
   text-decoration: none;
 }
 
-.item, .reply, nav, .outlet, .previous-subreddits{
+.item, nav, .outlet, .previous-subreddits{
   border:1px solid grey;
   box-shadow: 1px 1px 2px #555 inset;
   padding-right:1px;
@@ -189,8 +189,12 @@ video-js video{
 }
 .article{
  display: flexbox;
+   max-width: 1000px;
+
+  margin-left:75px;
+  padding:25px;
 }
-.article, .item{
+.item{
   max-width: 1000px;
 
   margin-left:75px;
@@ -202,7 +206,9 @@ video-js video{
 
 .reply{
   padding-left:5px;
-  margin-bottom:2px
+  margin-bottom:2px;
+  margin-left:10px;
+  box-shadow: 1px 1px 2px #555 inset;
 }
 nav{
   margin-top:150px;

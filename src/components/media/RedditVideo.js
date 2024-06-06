@@ -5,7 +5,7 @@ import VideoJS from "./VideoJS";
 export default function RedditVideo({ media }) {
     const playerRef = React.useRef(null);
 
-    if (!media.reddit_video) {
+    if (!media?.reddit_video) {
         return <div>video error</div>;
     }
 

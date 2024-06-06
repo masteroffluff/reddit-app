@@ -27,10 +27,11 @@ export default function LinkedArticle({url,title,thumbnail, domain, preview}){
     if(thumbnail&&thumbnail!=="default"){
         
     return (<>
-        
-    <a href={url} target="_blank" rel="noopener noreferrer">
-            {url}
-            <div className='visualMediaContainer'><img className="image" src={thumbnail} alt={thumbnail} /></div>
+        <img className="image" src={thumbnail} alt={thumbnail} />
+        <a href=
+        {url} target="_blank" rel="noopener noreferrer">
+                {url}
+            
             
         </a>
     </>)}

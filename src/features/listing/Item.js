@@ -77,7 +77,7 @@ export default function Item({thing, itemnumber}){
                     </div>)
                 case "v.redd.it":
 
-                    return <div className='visualMediaContainer'><RedditVideo media={media} /></div>
+                    return <div className='visualMediaContainer'><RedditVideo media={media} thumbnail={thumbnail} /></div>
                 default:
                     return <code> unidentified reddit domain {domain}</code>
             }

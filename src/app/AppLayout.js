@@ -21,11 +21,11 @@ export default function AppLayout(){
                 <Search />
             </header>
             <nav>
-                <h2>Reccomended</h2>
+                <h2>Recommended</h2>
                 <ul>
                 <li><NavLink to = "/">Front Page</NavLink></li>
                 <li><NavLink to = "/r/pics">PICS</NavLink></li>
-                <li><NavLink to = "/r/amitheasshole">Am I the Asshole</NavLink></li>
+                <li><NavLink to = "/r/amitheasshole">AITA</NavLink></li>
                 <li><NavLink to = "/r/asmr">ASMR</NavLink></li>
                 <li><NavLink to = "/r/videos">Videos</NavLink></li>
                 </ul>

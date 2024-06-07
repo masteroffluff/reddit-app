@@ -1,6 +1,6 @@
 import parse from 'html-react-parser'
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import EmbeddedVideo from '../../components/media/EmbeddedVideo'
 import RedditVideo from "../../components/media/RedditVideo"
 import Gallery from '../../components/media/Gallery'
@@ -13,10 +13,10 @@ import { useDispatch } from 'react-redux'
 // invidual entry from a listing
 
 
-export default function Item({thing, itemnumber, internal}){
+export default function Item({thing, internal}){
     
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+
 
     if(!thing.data){return <div className='mediaContainer'><p>error</p></div>}
 

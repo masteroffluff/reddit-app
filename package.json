@@ -43,7 +43,7 @@
     ]
   },
   "devDependencies": {
-    "redux-mock-store": "^1.5.4",
-    "@babel/plugin-proposal-private-property-in-object": "^4.3.0"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "redux-mock-store": "^1.5.4"
   }
 }

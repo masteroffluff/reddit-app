@@ -29,11 +29,13 @@ export default function Article(){
     }
     
     if (article.data===undefined&&!listIsLoadingSelector){
-        return <p>something aint right</p>
+        return <p>Something has gone wrong!</p>
     }
     return(
     <div className='article'>
-        <Item thing={article.data.children[0]} />
+        <div className='item-container'>
+            <Item thing={article.data.children[0]} internal='true'/>
+        </div>
 
         <div className="reply-container">
             <Replies children={replies.data.children} />

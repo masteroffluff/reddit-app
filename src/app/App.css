@@ -260,6 +260,46 @@ main{
   max-width: 100%;
   object-fit: cover;
 }
+.gallery{
+  margin-bottom: 1em;
+}
+.gallery-buttons{
+  width:100%;
+  display:flex;
+  justify-content: space-between;
+}
+
+button {
+  border: none;
+  border-radius: 2%;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border:darkcyan 1px solid;
+  background-color: black;
+  color:darkcyan;
+  font-family: "Poppins", sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 5px;
+  margin-top: 10px;
+  
+}
+button:active{
+  border:cyan 1px solid;
+  background-color: grey;
+  color:cyan;
+}
+button:hover{
+  border:cyan 1px solid;
+  color:cyan;
+}
+button:disabled{
+  border:grey 1px solid;
+  background-color: black;
+  color:grey;
+}
 
 
 @media screen and (max-width: 700px) {

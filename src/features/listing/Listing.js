@@ -63,7 +63,7 @@ export default function Listing(){
         
     return(
         <>
-        {Object.entries(listingObject.data.children).map(([key,thing])=>{return <div  key={key} data-testid={`post-${key}`} className="item"><Item key={key} itemnumber={key} thing={thing}/></div>}
+        {Object.entries(listingObject.data.children).map(([key,thing])=>{return <div  key={key} data-testid={`post-${key}`} className="item"><Item key={key} itemnumber={key} thing={thing} internal='false'/></div>}
         )}
         </>
         )   

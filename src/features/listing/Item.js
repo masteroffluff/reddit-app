@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux'
 // invidual entry from a listing
 
 
-export default function Item({thing, itemnumber}){
+export default function Item({thing, itemnumber, internal}){
     
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -104,7 +104,7 @@ export default function Item({thing, itemnumber}){
             <div className='mediaContainer'>{mediaDeflibulator()}</div>
             <div>{selftext_htmlFixed}</div>
             <br />
-            <Link to={permalink}> Go to Comments</Link>
+            {internal?"":<Link to={permalink}> Go to Comments</Link>}
         </div>)
 }
 

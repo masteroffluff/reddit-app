@@ -36,21 +36,21 @@ export default function Listing(){
     function ListingHeader(){
         if (!searchTerm){
             if(subredditName){
-                return (<div class="listing-header">
+                return (<div className="listing-header">
                     <h2>Sub Reddit:{path} </h2>
                 </div>)
             }
-                return (<div class="listing-header">
+                return (<div className="listing-header">
                     <h1>Welcome to Reddit</h1>
                     <p>come for the cats stay for the empathy</p>
                 </div>)
             }
         if(subredditName){
-            return (<div class="listing-header">
+            return (<div className="listing-header">
                 <h2>Search results in Sub Reddit:{path} </h2>
             </div>)
         }
-            return (<div class="listing-header">
+            return (<div className="listing-header">
                 <h2>Search Results:</h2>
             </div>)
 

@@ -18,11 +18,17 @@ export const fetchListingByPath = createAsyncThunk(
         else {
             endPoint = redditURL + path + orderBy + ".json?limit=50"
         }
-        console.log(endPoint)
+
+        //console.log(endPoint)
         return fetch(endPoint, { method: 'GET' })
-            .then(async (listing) => listing.json())
+            .then(async (listing) => {
+                if(listing.ok){return listing.json()}
+                throw new Error('Something went wrong')
+                })
             .then((data) => {
-                console.log(JSON.stringify(data))
+                //console.log('rejected fetchListingByPath')
+                if(data.error){rejectWithValue( data.reason||'Rejected')}
+                //console.log(JSON.stringify(data))
                 return data
             })
             .catch((e) => rejectWithValue(e))
@@ -41,12 +47,13 @@ export const appendListingByPath = createAsyncThunk(
         //console.log(endPoint);
         return fetch(endPoint, { method: 'GET' })
             .then(async (listing) => {
-                if(!listing.ok){return listing.json()}
+                if(listing.ok){return listing.json()}
                 throw new Error('Something went wrong')
                 })
             .then((data) => {
+                console.log('rejected appendListingByPath')
                 if(data.error){throw new Error(data.reason||'Rejected')}
-                console.log(JSON.stringify(data))
+                //console.log(JSON.stringify(data))
                 return data
             })
             .catch((e) => rejectWithValue(e))
@@ -118,13 +125,13 @@ export const listingSlice = createSlice(
                     .addMatcher(
                         isAnyOf(appendListingByPath.rejected,fetchListingByPath.rejected ),
                         (state, action) => {
-                            console.log(action)
+                            //console.log(action)
                             state.isLoading = false;
                             let temp = action.payload?.message || action.error.message
                             if (typeof (temp) === 'object') {
                                 temp = JSON.stringify(temp)
                             }
-                            console.log(temp)
+                            //console.log(temp)
                             state.hasError = temp
                         }
                     )

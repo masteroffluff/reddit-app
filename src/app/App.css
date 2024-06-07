@@ -18,6 +18,11 @@ body{
 
 }
 
+p{
+  margin: 0;
+}
+
+
 header{
   top:0;
   display:flex;
@@ -111,9 +116,9 @@ header a{
 
   position: relative;
   flex: 1 1 auto;
-   display:block;
-   width: 100%;
-   display: block;
+  display:block;
+  width: 100%;
+  display: block;
 }   
 
 
@@ -188,8 +193,8 @@ video-js video{
   width:auto;
 }
 .article{
- display: flexbox;
-   max-width: 1000px;
+  display: flexbox;
+  max-width: 1000px;
 
   margin-left:75px;
   padding:25px;
@@ -201,14 +206,27 @@ video-js video{
   padding:25px;
 }
 
+.reply-container{
+  border-right: 1px solid grey
+}
 
+.reply .author{
+  margin-bottom:5px;
+}
+.reply .reply-body{
+  padding-left:1em;
+  padding-bottom:1em;
+}
 
 
 .reply{
   padding-left:5px;
   margin-bottom:2px;
   margin-left:10px;
-  box-shadow: 1px 1px 2px #555 inset;
+  /* box-shadow: 1px 1px 2px #555 inset; */
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+
 }
 nav{
   margin-top:150px;

@@ -3,9 +3,9 @@ import parse from 'html-react-parser'
 
 
 
-export default function Replies({children}){
+export default function Replies({children, }){
     return (<>
-        <p>{Object.entries(children).map(([k,v])=>{
+        {Object.entries(children).map(([k,v])=>{
             const {body, body_html, replies,author} = v.data
             const bodyFixed =body_html?parse(parse(body_html)):body
 
@@ -19,6 +19,6 @@ export default function Replies({children}){
             )}
             else {return <></>};
             })}
-        </p>
+        
     </>)
 }

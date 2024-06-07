@@ -35,7 +35,9 @@ export default function Article(){
     <div className='article'>
         <Item thing={article.data.children[0]} />
 
-        <Replies children={replies.data.children} />
+        <div className="reply-container">
+            <Replies children={replies.data.children} />
+        </div>
     </div>)
     
 }

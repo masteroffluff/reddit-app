@@ -1,14 +1,25 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import { head } from "underscore";
 
 
 
 export default function EmbeddedVideo ({media,thumbnail}){
-    const {html, title , height,width, thumbnai_width, thumbnail_height} = media.oembed;
+    
+    const {html, title , height,width, thumbnail_width, thumbnail_height, thumbnail_url:media_thumbnail} = media.oembed;
     //const html = (dummyVideo)
     const [loadVideo, setLoadVideo]= useState(false);
-    const thumbnailToUse = thumbnail;
-    const image_width = thumbnai_width||width;
-    const image_height = thumbnai_width||height;
+    const [thumbnailToUse, setThumbnailToUse]=useState(media_thumbnail)
+
+     function imgOnError () {
+        // some thumbnails can't be loaded from the media due to whitelisting 
+        // use the smaller default thumbnail in that case
+        setThumbnailToUse(thumbnail)
+    };
+
+
+    
+    const image_width = thumbnail_width||width;
+    const image_height = thumbnail_height||height;
     
     let src=html.match(/(?<=src=").*"/)
     src = String(src).split('"')[0]
@@ -30,7 +41,7 @@ export default function EmbeddedVideo ({media,thumbnail}){
     }else{
         return(
             <div className="video visualMediaContainer">
-                <img src={thumbnailToUse} className="image" height={image_height} width={image_width} onClick={handleClick} alt={title} />
+                <img onError={imgOnError} src={thumbnailToUse} className="image" height={image_height} width={image_width} onClick={handleClick} alt={title} />
             </div>
 
         )

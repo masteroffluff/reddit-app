@@ -48,9 +48,6 @@ export default function Item({thing, itemnumber, internal}){
         dispatch(updatePreviousSubreddit(subreddit_name_prefixed))
     }
 
-    const titleClick=()=>{
-        navigate(permalink)
-    }
 
     // handle the different types of media, deflibulator is totally a word
     const mediaDeflibulator=()=>{
@@ -99,7 +96,8 @@ export default function Item({thing, itemnumber, internal}){
     
     return (
         <div>
-            <h3 onClick={titleClick}>{title}</h3>
+            <h3 className="item-title"><Link to={permalink}>{title}</Link></h3>
+            
             <h4>by {author} in <Link onClick={handleSRListUpdate} to={"/"+subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
             <div className='mediaContainer'>{mediaDeflibulator()}</div>
             <div>{selftext_htmlFixed}</div>

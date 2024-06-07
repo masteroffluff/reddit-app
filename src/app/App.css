@@ -71,10 +71,18 @@ header a{
   text-decoration: none;
 }
 
+
+
 .item, nav, .outlet, .previous-subreddits{
   border:1px solid grey;
   box-shadow: 1px 1px 2px #555 inset;
   padding-right:1px;
+}
+
+.item-title a {
+  all: unset;
+  color: white !important; 
+  text-decoration: none !important; /* no underline */
 }
 
 .listing-header{
@@ -302,7 +310,7 @@ button:disabled{
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
 /*   body {
     background-color: lightgreen;
   } */
@@ -310,3 +318,4 @@ button:disabled{
     display:none;
   }
 }
+

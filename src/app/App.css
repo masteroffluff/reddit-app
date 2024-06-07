@@ -256,6 +256,11 @@ main{
   margin:10px
 }
 
+.reply-image{
+  max-width: 100%;
+  object-fit: cover;
+}
+
 
 @media screen and (max-width: 700px) {
 /*   body {

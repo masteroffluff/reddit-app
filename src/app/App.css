@@ -12,7 +12,7 @@ h6 {font-size:  0.7rem;}
 body{
   color:azure;
   background-color: #151515;
-  font-family: 'OpenDyslexicMonoRegular','Tahoma', 'sans-serif';
+  font-family: 'Tahoma', 'sans-serif';
   font-weight: normal;
   font-style: normal;
 
@@ -214,9 +214,9 @@ video-js video{
   padding:25px;
 }
 
-.reply-container{
-  border-right: 1px solid grey
-}
+/* .reply-container{
+  border-right: 1px solid grey;
+} */
 
 .reply .author{
   margin-bottom:5px;
@@ -224,8 +224,15 @@ video-js video{
 .reply .reply-body{
   padding-left:1em;
   padding-bottom:1em;
+  word-wrap: break-word;
 }
+.reply-first{
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+  margin-bottom:0.75em !important;
+  box-shadow:  5px 5px 5px rgba(128, 128, 128, 0.2)
 
+}
 
 .reply{
   padding-left:5px;
@@ -265,7 +272,7 @@ main{
 }
 
 .reply-image{
-  max-width: 100%;
+  max-width: 95%;
   object-fit: cover;
 }
 .gallery{
@@ -275,6 +282,7 @@ main{
   width:100%;
   display:flex;
   justify-content: space-between;
+  margin-top: 10px;
 }
 
 button {
@@ -309,6 +317,14 @@ button:disabled{
   color:grey;
 }
 
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  
+  border-left: 60px solid green;
+}
 
 @media screen and (max-width: 900px) {
 /*   body {

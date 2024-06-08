@@ -38,7 +38,7 @@ export default function Article(){
         </div>
 
         <div className="reply-container">
-            <Replies children={replies.data.children} />
+            <Replies children={replies.data.children} isChild={false} />
         </div>
     </div>)
     

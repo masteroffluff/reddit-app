@@ -4,7 +4,7 @@ import parse from 'html-react-parser'
 
 
 
-export default function Replies({ children, keyValue=0 }) {
+export default function Replies({ children, isChild  }) {
     return (<>
         {Object.entries(children).map(([k, v]) => {
             const { body, body_html, replies, author } = v.data
@@ -30,10 +30,10 @@ export default function Replies({ children, keyValue=0 }) {
             if (author) {
 
                 return (
-                    <div key={k} className="reply">
+                    <div key={v.data.id} className={isChild?"reply":"reply reply-first"}>
                         <p className='author'>{author}:</p>
                         <div className='reply-body'> {bodyFixed}</div>
-                        {replies ? <Replies key={k+100*keyValue} keyValue={k+100*keyValue} children={replies.data.children} /> : ""}
+                        {replies ? <Replies  children={replies.data.children} isChild={true}/> : ""}
                     </div>
                 )
             }

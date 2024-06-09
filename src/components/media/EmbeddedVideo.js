@@ -1,5 +1,6 @@
 import React, { useState} from "react";
 // import { head } from "underscore";
+import "./embeddedVideo.css"
 
 
 
@@ -39,11 +40,13 @@ export default function EmbeddedVideo ({media,thumbnail}){
                 <button onClick={handleClick}>Unload</button>
             </>)
     }else{
-        return(
-            <div className="video visualMediaContainer">
+        return(<>
+            <div className="video">
                 <img onError={imgOnError} src={thumbnailToUse} className="image" height={image_height} width={image_width} onClick={handleClick} alt={title} />
+                
             </div>
-
+            <button onClick={handleClick}>Load</button>
+            </>
         )
     }
 

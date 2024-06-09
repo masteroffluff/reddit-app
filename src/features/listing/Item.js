@@ -1,7 +1,7 @@
 import parse from 'html-react-parser'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import EmbeddedVideo from '../../components/media/EmbeddedVideo'
+import EmbeddedVideo from '../../components/media/embeddedVideo/EmbeddedVideo'
 import RedditVideo from "../../components/media/RedditVideo"
 import Gallery from '../../components/media/Gallery'
 import LinkedArticle from '../../components/media/LinkedArticle'

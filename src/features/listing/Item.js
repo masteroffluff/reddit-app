@@ -32,6 +32,8 @@ export default function Item({thing, internal}){
         url,
         subreddit_name_prefixed,
         thumbnail,
+        thumbnail_height,
+        thumbnail_width,
         crosspost_parent_list,
         gallery_data,
         media_metadata,
@@ -89,7 +91,7 @@ export default function Item({thing, internal}){
         
         // if its nothing else then its a linked article
         
-        return <LinkedArticle url={url} thumbnail={thumbnail} domain={domain} preview={preview}/>;
+        return <LinkedArticle url={url} thumbnail={thumbnail} thumbnail_height={thumbnail_height} thumbnail_width={thumbnail_width} domain={domain} preview={preview}/>;
         
 
     }

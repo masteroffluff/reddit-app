@@ -27,25 +27,23 @@ export default function EmbeddedVideo ({media,thumbnail}){
     const handleClick=()=>{
         setLoadVideo(!loadVideo)
     }
-    const padding = `${height / width * 100}%`
+    const paddingPercentage = `${height / width * 100}%`
     if (loadVideo){
         //alert (videoElement)
         return (
             <>
-            <div className="video live-video" style={{paddingBottom:padding}}>
+            <div className="video live-video" style={{paddingBottom:paddingPercentage}}>
                 <iframe src={src} height={image_height} width={image_width} frameborder="0" title={title} allowFullScreen></iframe>
                 
             </div>
-                <button className='load-button' onClick={handleClick}>Unload</button>
+                <button onClick={handleClick}>Unload</button>
             </>)
     }else{
         return(
-        <>
-            <div className="video">
-                <img onError={imgOnError} src={thumbnailToUse} className="image video-thumbnail" height={image_height} width={image_width} onClick={handleClick} alt={title} />
+            <div className="video visualMediaContainer">
+                <img onError={imgOnError} src={thumbnailToUse} className="image" height={image_height} width={image_width} onClick={handleClick} alt={title} />
             </div>
-            <button className='load-button' onClick={handleClick}>Load</button>
-            </>
+
         )
     }
 

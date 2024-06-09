@@ -89,63 +89,68 @@ header a{
   margin-left: 10px;
 }
 
-/* General container for all media types */
 .mediaContainer {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
+  display:flex;
+  align-items:stretch;
+  width:100%;
+  max-width:1000px;
+  /* border:green 1px solid; */
+}
+.visualMediaContainer{
   width: 100%;
-  max-width: 1000px;
-  overflow: hidden; /* Prevents overflowing elements */
-  position: relative; /* Necessary for absolute positioning within */
-  padding: 10px; /* Add some padding to avoid tight bounds */
-  box-sizing: border-box; /* Include padding in size calculations */
+  height:100%;
+  max-height: 850px;
+  max-width: 990px;
+  /* display:flex; */
+  /* justify-content: center; */
+  background-color: darkcyan;
+  /* border:plum 1px solid; */
+  object-fit: cover;
 }
 
-/* Universal media styling */
-.mediaContainer img, .mediaContainer iframe, .mediaContainer video {
+.visualMediaContainer img{
+  object-fit: contain;
+  max-height:inherit !important;
+  max-width:inherit !important;
   width: 100%;
-  height: auto;
-  object-fit: contain; /* Maintain aspect ratio for all media */
-  max-height: 850px; /* Prevent media from growing too large */
+  height:100%;
+  object-fit: contain  
 }
 
-/* Specific video adjustments within the media container */
-.mediaContainer iframe, .mediaContainer video {
-  /* Ensure the video scales properly within its container */
+
+.video{
+  object-fit: contain;
+  align-items: stretch;
+
+  position: relative;
   flex: 1 1 auto;
-  position: relative; /* Positioning for consistency */
-}
-
-/* Specific styling for thumbnails within the media container */
-.mediaContainer .video-thumbnail {
+  display:block;
   width: 100%;
-  height: auto;
-  object-fit: contain; /* Scale to fit within container */
-  max-height: 850px; /* Same as video container to match size */
   display: block;
-}
+}   
 
 
-/* Thumbnail styles to match video size */
-.video-thumbnail {
+
+
+.video iframe {
+  flex: 1 1 auto;
+  position:absolute;
+  top: 0;
+/*   bottom: 0; */
+  left: 0;
+/*   right: 0; */
+  height: 100%;
   width: 100%;
-  height: auto;
-  max-height: 850px; /* Same as video container */
-  max-width: 100%;
-  object-fit: contain; /* Scale to fit within container */
+  display: block;
+  /* min-height: 500px */
 }
-
-
 .reddit-video{
   height:inherit;
   width:inherit;
-  object-position: center;
 }
 
 .reddit-video *{
-  object-position: center;
+
   max-height: 850px;
   max-width: 990px;
 }
@@ -160,7 +165,6 @@ video-js video{
   /* min-width: 800px; */ /* Adjust the minimum width as needed */
   /* height:auto; */
   object-fit:contain;
-  
 /*   height:100%;
   width:100%; */
 }
@@ -229,7 +233,6 @@ video-js video{
   box-shadow:  5px 5px 5px rgba(128, 128, 128, 0.2)
 
 }
-
 
 .reply{
   padding-left:5px;
@@ -322,28 +325,13 @@ button:disabled{
   
   border-left: 60px solid green;
 }
-.linked-article-container{
-  width:100%;
-  display:flex;
-  flex-flow: row;
-}
-
-
 
 @media screen and (max-width: 900px) {
-  .mediaContainer, .visualMediaContainer, .video, .thumbnail {
-    max-width: 100%;
-    max-height: 450px; /* Adjust max-height for smaller screens */
-  }
-
-  .load-button {
-    bottom: 5px; /* Adjust as needed for smaller screens */
-    padding: 8px 16px; /* Smaller padding for smaller screens */
-  }
+/*   body {
+    background-color: lightgreen;
+  } */
   .previous-subreddits{
     display:none;
   }
 }
-
-
 

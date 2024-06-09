@@ -30,7 +30,7 @@ export default function EmbeddedVideo({ media, thumbnail }) {
     }
     
     let scale;
-    if(height>750){
+    if(height>800){
         scale= 750/height;
     } else {
         scale= 1;

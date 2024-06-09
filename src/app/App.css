@@ -317,6 +317,13 @@ button:disabled{
   color:grey;
 }
 
+.linked-article-container{
+  width:100%;
+  display:flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
 .arrow-right {
   width: 0; 
   height: 0; 

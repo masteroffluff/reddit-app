@@ -49,7 +49,7 @@ export default function EmbeddedVideo({ media, thumbnail }) {
                     <iframe id='iframe' src={src} height={height} width={width} frameborder="0" title={title} allowFullScreen></iframe>
 
                 </div>
-                <div><button className="loading-button" onClick={handleClick}>Unload</button></div>
+                <div><button className="unloading-button" onClick={handleClick}>x</button></div>
             </>)
     } else {
         return (<>
@@ -57,7 +57,7 @@ export default function EmbeddedVideo({ media, thumbnail }) {
                 <img onError={imgOnError} src={thumbnailToUse} className="image" height={image_height+'px'} width={image_width+'px'} onClick={handleClick} alt={title} />
 
             </div>
-            <div ><button className="loading-button" onClick={handleClick}>Load</button></div>
+            <div className="loading-button-container"  ><div className="loading-button" onClick={handleClick}></div></div>
         </>
         )
     }

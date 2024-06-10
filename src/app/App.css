@@ -88,6 +88,9 @@ header a{
 .listing-header{
   margin-left: 10px;
 }
+.strapline{
+  padding-bottom: 10px;
+}
 
 .mediaContainer {
   display:flex;

@@ -42,7 +42,7 @@ export default function Listing(){
             }
                 return (<div className="listing-header">
                     <h1>Welcome to Reddit</h1>
-                    <p>come for the cats stay for the empathy</p>
+                    <p className="strapline">Come for the cats stay for the empathy.</p>
                 </div>)
             }
         if(subredditName){

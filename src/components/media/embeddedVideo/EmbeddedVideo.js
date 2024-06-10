@@ -57,7 +57,7 @@ export default function EmbeddedVideo({ media, thumbnail }) {
                 <img onError={imgOnError} src={thumbnailToUse} className="image" height={image_height+'px'} width={image_width+'px'} onClick={handleClick} alt={title} />
 
             </div>
-            <div className="loading-button-container"  ><div className="loading-button" onClick={handleClick}></div></div>
+            <div className="loading-button-container" onClick={handleClick} ><div className="loading-button" ></div></div>
         </>
         )
     }

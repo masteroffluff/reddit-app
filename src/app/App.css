@@ -106,7 +106,8 @@ header a{
   max-width: 990px;
   /* display:flex; */
   /* justify-content: center; */
-  background-color: darkcyan;
+  background-color: #008b8b55;
+  border-radius: 2%;
   /* border:plum 1px solid; */
   object-fit: cover;
 }

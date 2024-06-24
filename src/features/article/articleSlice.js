@@ -17,7 +17,7 @@ export const fetchArticleByPath= createAsyncThunk(
                 if(article.ok){return article.json()}
                 throw new Error('Something went wrong')})
             .then((data) => {
-                console.log(JSON.stringify(data))
+                //console.log(JSON.stringify(data))
                 return data
             })
             .catch((e) => rejectWithValue(e))
@@ -53,7 +53,7 @@ export const articleSlice = createSlice(
             (builder)=>{
                 builder
                 .addCase(fetchArticleByPath.fulfilled,(state, action) => {
-                    console.log(action.payload)
+                    //console.log(action.payload)
                     state.article=action.payload["0"];
                     
                     state.replies=action.payload["1"];
@@ -86,7 +86,7 @@ export const articleSlice = createSlice(
                 )
                 .addCase(fetchArticleByPath.rejected,
                     (state, action) => {
-                        console.log(action)
+                        //console.log(action)
                         state.isLoading = false;
                         state.hasError = true;
                     }

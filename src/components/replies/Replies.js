@@ -19,7 +19,7 @@ export default function Replies({ children, isChild  }) {
                         
                         const image=link.replace(/<a href="https:\/\/preview\.redd\.it/gm,'<img class="reply-image" src="https://preview.redd.it')
                         .replace(/>.*<\/a>/,' />')
-                        console.log(link)
+                        //console.log(link)
                         parsed_body +=image;
                     }
                 }))

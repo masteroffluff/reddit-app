@@ -84,7 +84,11 @@ export default function Item({thing, internal}){
         }
         if (media!=null){
             //return <code>Embedded media</code>
+            if(media.oembed){
             return <div className='visualMediaContainer'><EmbeddedVideo media={media} thumbnail={thumbnail} /></div>
+            } else {
+                return <><code>unidentified media type</code><br /> {JSON.stringify(thing)}</>
+            }
         }
         
         // if its nothing else then its a linked article

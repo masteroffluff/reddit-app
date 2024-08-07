@@ -100,7 +100,7 @@ export default function Item({thing, internal}){
     
     return (
         <div>
-            <h3 className="item-title"><Link to={permalink}>{title}</Link></h3>
+            <h3 className="item-title"><Link to={permalink}>{parse(title)}</Link></h3>
             
             <h4>by {author} in <Link onClick={handleSRListUpdate} to={"/"+subreddit_name_prefixed}>{subreddit_name_prefixed}</Link></h4>
             <div className='mediaContainer'>{mediaDeflibulator()}</div>

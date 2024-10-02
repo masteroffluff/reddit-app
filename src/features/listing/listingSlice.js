@@ -46,7 +46,7 @@ export const appendListingByPath = createAsyncThunk(
 
         const state = getState();
         const after = state.listing.listing.data.after
-        const endPoint = redditURL + path + orderBy + ".json?limit=50&after=" + after
+        const endPoint = corsProxy(redditURL + path + orderBy + ".json?limit=50&after=" + after)
  ;
         return fetch(endPoint, { method: 'GET' })
             .then(async (listing) => {

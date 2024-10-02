@@ -8,10 +8,6 @@ import LinkedArticle from '../../components/media/LinkedArticle'
 import {updatePreviousSubreddit} from '../previousSubreddits/previousSubredditsSlice'
 import { useDispatch } from 'react-redux'
 
-//var parse = require('html-react-parser');
-
-// invidual entry from a listing
-
 
 export default function Item({thing, internal}){
     

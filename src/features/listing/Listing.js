@@ -7,7 +7,7 @@ import store from "../../app/store";
 import { useSelector } from 'react-redux';
 
 export default function Listing(){
-    //const dispatch = useDispatch();
+
     let {subredditName} = useParams();
     let {pathname:path} = useLocation();
     let [searchParams] = useSearchParams();
@@ -16,7 +16,7 @@ export default function Listing(){
     const searchTerm = searchParams.get("q")
     useEffect(()=>{
         
-        //if (subredditName){path = "r/" + subredditName +"/"}
+
 
         store.dispatch(fetchListingByPath({path, searchTerm}))}
     ,[path,searchTerm])
@@ -24,15 +24,14 @@ export default function Listing(){
     const listing =useSelector(selectedListing)
     
 
-    //const listingSelector = useSelector(selectedListing)
     const listIsLoadingSelector = useSelector(isLoadingListing)
     const listingHasError = useSelector(hasErrorListing)
 
     const handleContinue=()=>{
         store.dispatch(appendListingByPath({path, searchTerm}))
-        //console.log(store.getState().listing.listing.data)
+
     }
-    // component to handle the header
+
     function ListingHeader(){
         if (!searchTerm){
             if(subredditName){

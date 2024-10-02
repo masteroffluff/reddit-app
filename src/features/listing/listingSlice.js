@@ -5,7 +5,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 const redditURL = "https://www.reddit.com";
 const orderBy = "/hot/"
 
-//const fakejson = "../../fakejson/frontpage.json"
+
+function corsProxy (url){
+    return 'https://corsproxy.io/?' + encodeURIComponent(url)
+}
+
 
 export const fetchListingByPath = createAsyncThunk(
     'listing/fetchListingByPath',
@@ -13,22 +17,21 @@ export const fetchListingByPath = createAsyncThunk(
 
         let endPoint = ""
         if (searchTerm) {
-            endPoint = redditURL + path + ".json?limit=50" + (searchTerm ? "&q=" + searchTerm : "")
+            endPoint = corsProxy(redditURL + path + ".json?limit=50" + (searchTerm ? "&q=" + searchTerm : ""))
         }
         else {
-            endPoint = redditURL + path + orderBy + ".json?limit=50"
+            endPoint =corsProxy( redditURL + path + orderBy + ".json?limit=50")
         }
 
-        //console.log(endPoint)
+
         return fetch(endPoint, { method: 'GET' })
             .then(async (listing) => {
                 if(listing.ok){return listing.json()}
                 throw new Error('Something went wrong')
                 })
             .then((data) => {
-                //console.log('rejected fetchListingByPath')
                 if(data.error){rejectWithValue( data.reason||'Rejected')}
-                //console.log(JSON.stringify(data))
+
                 return data
             })
             .catch((e) => rejectWithValue(e))
@@ -40,11 +43,11 @@ export const fetchListingByPath = createAsyncThunk(
 export const appendListingByPath = createAsyncThunk(
     'listing/appendListingByPath',
     async ({ path, searchTerm }, { getState, rejectWithValue }) => {
-        //console.log("after" ,after)
+
         const state = getState();
         const after = state.listing.listing.data.after
         const endPoint = redditURL + path + orderBy + ".json?limit=50&after=" + after
-        //console.log(endPoint);
+ ;
         return fetch(endPoint, { method: 'GET' })
             .then(async (listing) => {
                 if(listing.ok){return listing.json()}
@@ -53,7 +56,7 @@ export const appendListingByPath = createAsyncThunk(
             .then((data) => {
                 console.log('rejected appendListingByPath')
                 if(data.error){throw new Error(data.reason||'Rejected')}
-                //console.log(JSON.stringify(data))
+                
                 return data
             })
             .catch((e) => rejectWithValue(e))
@@ -76,9 +79,7 @@ export const listingSlice = createSlice(
             (builder) => {
                 builder
                     .addCase(fetchListingByPath.fulfilled, (state, action) => {
-                        // if (state.listing.listing!=={}){Object.keys(state.listing.listing).forEach(key => delete state.listing.listing[key]);} // clear out old items 
-                        // look at the dpth and see if we can remove any entries greater than it
-                        //let {dist} = action.payload.data
+
                         state.listing = action.payload;
                         state.isLoading = false;
                         state.hasError = false;
@@ -108,13 +109,7 @@ export const listingSlice = createSlice(
                         state.hasError = false;
                     }
                     )
-                    /*             .addCase(
-                                    fetchListingByPath.pending,
-                                    (state) => {
-                                        state.isLoading = true;
-                                        state.hasError = false;
-                                    }
-                                )  */
+
                     .addMatcher(
                         isAnyOf(appendListingByPath.pending,fetchListingByPath.pending ),
                         (state) => {
@@ -141,7 +136,6 @@ export const listingSlice = createSlice(
 
 
 
-//export { fetchListingByPath } = listingSlice.actions
 
 export default listingSlice.reducer
 

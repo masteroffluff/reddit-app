@@ -9,6 +9,7 @@ import {updatePreviousSubreddit} from '../previousSubreddits/previousSubredditsS
 import { useDispatch } from 'react-redux'
 
 
+
 export default function Item({thing, internal}){
     
     const dispatch = useDispatch();

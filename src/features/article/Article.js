@@ -34,7 +34,7 @@ export default function Article(){
     return(
     <div className='article'>
         <div className='item-container'>
-            <Item thing={article.data.children[0]} internal='true'/>
+            <Item thing={article.data.children[0]} internal={true}/>
         </div>
 
         <div className="reply-container">

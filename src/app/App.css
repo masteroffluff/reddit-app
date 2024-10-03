@@ -17,7 +17,7 @@ body{
   font-style: normal;
 
 }
-body::selection{
+body *::selection{
   color:black;
   background-color:cyan;
 }

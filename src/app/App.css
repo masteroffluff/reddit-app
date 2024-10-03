@@ -21,7 +21,10 @@ body{
 p{
   margin: 0;
 }
-
+p::selection{
+  color:black;
+  background-color:cyan;
+}
 
 header{
   top:0;

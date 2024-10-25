@@ -75,7 +75,7 @@ test('renders posts after fetching', async () => {
 
 // Add more tests for error state, etc.
 test('renders error state when fetching fails', async () => {
-  //const errorMessage = 'Failed to fetch data';
+  const errorMessage = 'Failed to fetch data';
   const store = mockStore({
     listing: {
       listing: [], // Could be actual data or empty array depending on how you handle errors

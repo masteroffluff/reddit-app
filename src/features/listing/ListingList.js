@@ -12,17 +12,18 @@ export default function ListingList({ listingObject, dispatchParams}) {
   const [visibleCount, setVisibleCount] = useState(5);
   const sentinelRef = useRef();
   const listingHasMore = useSelector(hasMore);
+  const listingHasMoreRef = useRef(listingHasMore);
   const [shouldLoadMore, setShouldLoadMore] = useState(false);
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (listingObject.data === undefined) {
+    if (!data) {
       return;
     }
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && listingHasMore) {
+          if (entry.isIntersecting && listingHasMoreRef) {
             setVisibleCount((prev) => {
               const newValue = Math.min(prev + 5, data.children.length);
               if (newValue >= data.children.length) {
@@ -46,17 +47,18 @@ export default function ListingList({ listingObject, dispatchParams}) {
     }
 
     return () => observer.disconnect();
+    
   }, [data]);
 
 
   useEffect(() => {
     
-    if (shouldLoadMore && listingHasMore) {
+    if (shouldLoadMore && listingHasMoreRef) {
         console.log("loading more")
       dispatch(appendListingByPath(dispatchParams));
       setShouldLoadMore(false);
     }
-  }, [shouldLoadMore, dispatch, dispatchParams, listingHasMore]);
+  }, [shouldLoadMore, dispatch, dispatchParams]);
 
   if (!data) {
     return <p>please wait</p>;

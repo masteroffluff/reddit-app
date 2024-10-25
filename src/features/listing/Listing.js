@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 //import Item from "./Item"
 import ListingList from "./ListingList";
@@ -10,7 +10,7 @@ import {
   selectedListing,
   //hasMore,
 } from "./listingSlice";
-import store from "../../app/store";
+//import store from "../../app/store";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Listing() {
@@ -19,12 +19,11 @@ export default function Listing() {
   let [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("q");
 
-  
-const dispatch = useDispatch()
-  const dispatchParams = { path, searchTerm }
+    const dispatch = useDispatch()
+    const dispatchParams = useMemo(() => ({ path, searchTerm }), [path, searchTerm]);
   useEffect(() => {
     dispatch(fetchListingByPath(dispatchParams));
-  }, [path, searchTerm]);
+  }, [path, searchTerm, dispatch, dispatchParams ]);
 
   const listing = useSelector(selectedListing);
 

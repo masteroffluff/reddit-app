@@ -71,6 +71,7 @@ export const listingSlice = createSlice(
         initialState: {
             listing: {},
             after: "",
+            hasMore:true,
             isLoading: false,
             hasError: false
         },
@@ -79,7 +80,7 @@ export const listingSlice = createSlice(
             (builder) => {
                 builder
                     .addCase(fetchListingByPath.fulfilled, (state, action) => {
-
+                        state.hasMore = !!action.payload.data?.children&&action.payload.data.children.length>0
                         state.listing = action.payload;
                         state.isLoading = false;
                         state.hasError = false;
@@ -89,7 +90,7 @@ export const listingSlice = createSlice(
                         let { children: stateChildren } = state.listing.data
                         let { children: actionChildren, after: actionAfter } = action.payload.data
                         // update after
-
+                        state.hasMore = !!action.payload.data?.children&&action.payload.data.children.length>0
 
                         state.listing.data.after = actionAfter
                         // iterate through list and make sure the object number is added to last
@@ -139,6 +140,8 @@ export const listingSlice = createSlice(
 
 export default listingSlice.reducer
 
+
 export const selectedListing = (state) => state.listing.listing;
 export const isLoadingListing = (state) => state.listing.isLoading;
 export const hasErrorListing = (state) => state.listing.hasError;
+export const hasMore = (state) => state.listing.hasMore;

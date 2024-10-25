@@ -25,3 +25,6 @@ yarn-error.log*
 
 # dummy data
 /fakejson
+
+# temp files
+/temp

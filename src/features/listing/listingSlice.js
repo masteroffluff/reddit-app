@@ -54,8 +54,12 @@ export const appendListingByPath = createAsyncThunk(
                 throw new Error('Something went wrong')
                 })
             .then((data) => {
-                console.log('rejected appendListingByPath')
-                if(data.error){throw new Error(data.reason||'Rejected')}
+                //console.log('rejected appendListingByPath')
+
+                if(data.error){
+                    console.log('rejected appendListingByPath')
+                    throw new Error(data.reason||'Rejected')
+                }
                 
                 return data
             })

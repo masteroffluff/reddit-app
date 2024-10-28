@@ -46,7 +46,7 @@ export default function EmbeddedVideo({ media, thumbnail }) {
                     transform: `scale(${scale})`,
                     transformOrigin: "center center"
                 }}>
-                    <iframe id='iframe' src={src} height={height} width={width} frameborder="0" title={title} allowFullScreen></iframe>
+                    <iframe id='iframe' src={src} height={height} width={width} title={title} allowFullScreen></iframe>
 
                 </div>
                 <div><button className="unloading-button" onClick={handleClick}>x</button></div>

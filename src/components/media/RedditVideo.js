@@ -16,6 +16,12 @@ export default function RedditVideo({ media }) {
         controls: true,
         responsive: true,
         fluid: false,
+        html5: {
+        hls: {
+            withCredentials: true,  // may help with CORS errors
+            overrideNative: true,   // ensure Video.js handles HLS playback
+        },
+    },
         sources: [{
             src: hls_url,
             type: "application/x-mpegURL"
@@ -24,7 +30,16 @@ export default function RedditVideo({ media }) {
 
     const handlePlayerReady = (player) => {
         playerRef.current = player;
-
+        player.on('error', () => {
+            const error = player.error();
+            console.log('VideoJS Error:', error);
+    
+            // Pause the player on error
+            player.pause();
+    
+            // Optionally, display a message to the user
+            alert('Video playback failed. Please try again later.');
+        });
         // player.on('waiting', () => {
         //     videojs.log('player is waiting');
         // });

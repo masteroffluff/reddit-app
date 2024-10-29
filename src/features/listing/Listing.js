@@ -4,11 +4,11 @@ import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import ListingList from "./ListingList";
 import {
   fetchListingByPath,
-  //appendListingByPath,
+  appendListingByPath,
   isLoadingListing,
   hasErrorListing,
   selectedListing,
-  //hasMore,
+  hasMore,
 } from "./listingSlice";
 //import store from "../../app/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,14 +29,14 @@ export default function Listing() {
 
   const listIsLoadingSelector = useSelector(isLoadingListing);
   const listingHasError = useSelector(hasErrorListing);
-  //const listingHasMore = useSelector(hasMore);
+  const listingHasMore = useSelector(hasMore);
 
 
-//   const handleContinue = () => {
-//     if (listingHasMore) {
-//       store.dispatch(appendListingByPath(dispatchParams));
-//     }
-//   };
+  const handleContinue = () => {
+    if (listingHasMore) {
+      dispatch(appendListingByPath(dispatchParams));
+    }
+  };
 
   function ListingHeader() {
     if (!searchTerm) {
@@ -92,8 +92,7 @@ export default function Listing() {
       <ListingHeader />
       {listing.data?<ListingList listingObject={listing} dispatchParams={dispatchParams} />:<></>}
       {listIsLoadingSelector?<p>Loading...</p>:<></>}
-      {/* <div className="loadig-button">{listIsLoadingSelector?<p>Loading...</p>:<button onClick={handleContinue}>Load More?</button>}</div> */}
-      <p>-----------</p>
+      <div className="loadig-button">{listIsLoadingSelector?<p>Loading...</p>:listingHasMore?<p>---------</p>:<button onClick={handleContinue}>Load More?</button>}</div>
     </div>
 
   );

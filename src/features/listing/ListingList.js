@@ -26,7 +26,7 @@ export default function ListingList({ listingObject, dispatchParams}) {
           if (entry.isIntersecting && listingHasMoreRef) {
             setVisibleCount((prev) => {
               const newValue = Math.min(prev + 5, data.children.length);
-              if (newValue >= data.children.length) {
+              if (newValue >= data.children.length-5) {
                 setShouldLoadMore(true)
               }
               return newValue;
@@ -36,7 +36,7 @@ export default function ListingList({ listingObject, dispatchParams}) {
       },
       {
         root: null,
-        rootMargin: "100px", // Start loading 100px before data.children enter viewport
+        rootMargin: "200px", // Start loading 100px before data.children enter viewport
         threshold: 0.1,
       }
     );

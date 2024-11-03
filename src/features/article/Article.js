@@ -32,7 +32,7 @@ export default function Article(){
         return <p>Something has gone wrong!</p>
     }
     return(
-    <div className='article'>
+    <article>
         <div className='item-container'>
             <Item thing={article.data.children[0]} internal={true}/>
         </div>
@@ -40,7 +40,7 @@ export default function Article(){
         <div className="reply-container">
             <Replies children={replies.data.children} isChild={false} />
         </div>
-    </div>)
+    </article>)
     
 }
 

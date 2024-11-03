@@ -204,7 +204,7 @@ video-js video{
   height:20px;
   width:auto;
 }
-.article{
+article{
   display: flexbox;
   max-width: 1000px;
 

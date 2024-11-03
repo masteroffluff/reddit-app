@@ -88,12 +88,12 @@ export default function Listing() {
   }
 
   return (
-    <div className="listing">
+    <section className="listing">
       <ListingHeader />
       {listing.data?<ListingList listingObject={listing} dispatchParams={dispatchParams} />:<></>}
-      {listIsLoadingSelector?<p>Loading...</p>:<></>}
-      <div className="loadig-button">{listIsLoadingSelector?<p>Loading...</p>:listingHasMore?<p>---------</p>:<button onClick={handleContinue}>Load More?</button>}</div>
-    </div>
+      {/* {listIsLoadingSelector?<p>Loading...</p>:<></>} */}
+      <div className="loadig-button">{listIsLoadingSelector?<p>Loading...</p>:listingHasMore?<button onClick={handleContinue}>Load More?</button>:<p>----------</p>}</div>
+    </section>
 
   );
 }

@@ -72,7 +72,7 @@ export default function Listing() {
   // glom the header and list together
   if (listingHasError) {
     return (<>
-      <h1>Oh No an error has occured</h1>
+      <h1>Oh no! An error has occured.</h1>
       <p>Error:{listingHasError}</p>
       <p>Please try disabling CORS on your browser and trying again.</p>
     </>);

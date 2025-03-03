@@ -1,14 +1,13 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import {corsProxy} from '../../utils'
 //import fs from "node:fs";
 
 const redditURL = "https://www.reddit.com";
 const orderBy = "/hot/"
 
 
-function corsProxy (url){
-    return 'https://corsproxy.io/?' + encodeURIComponent(url)
-}
+
 
 
 export const fetchListingByPath = createAsyncThunk(
@@ -16,8 +15,9 @@ export const fetchListingByPath = createAsyncThunk(
     async ({ path, searchTerm }, { rejectWithValue }) => {
 
         let endPoint = ""
+        const feed = path?"":"&feed=home"
         if (searchTerm) {
-            endPoint = corsProxy(redditURL + path + ".json?limit=50" + (searchTerm ? "&q=" + searchTerm : ""))
+            endPoint = corsProxy(redditURL + path + ".json?limit=50" + (searchTerm ? "&q=" + searchTerm : "")+ feed)
         }
         else {
             endPoint =corsProxy( redditURL + path + orderBy + ".json?limit=50")

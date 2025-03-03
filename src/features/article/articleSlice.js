@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
+import {corsProxy} from '../../utils'
 
 const redditURL = "https://www.reddit.com/";
 
@@ -8,7 +8,8 @@ export const fetchArticleByPath= createAsyncThunk(
     'article/fetchArticleByPath',
     async (path,{rejectWithValue}) =>{
 
-        const endPoint = 'https://corsproxy.io/?' + encodeURIComponent(redditURL+path+".json")
+        const endPoint = corsProxy(redditURL+path+".json")
+        
         return fetch(endPoint, { method: 'GET' })
             .then(async (article) => {
                 if(article.ok){return article.json()}

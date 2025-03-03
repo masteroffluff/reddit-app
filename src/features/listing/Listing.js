@@ -68,23 +68,14 @@ export default function Listing() {
     );
   }
   // // component to handle the lists
-  // function ListingList({listingObject}){
-  //     if (listingObject.data===undefined){
-  //         return <p>please wait</p>
-  //     }
-
-  // return(
-  //     <>
-  //     {Object.entries(listingObject.data.children).map(([key,thing])=>{return <div  key={key} data-testid={`post-${key}`} className="item"><Item key={key} itemnumber={key} thing={thing} internal={false}/></div>}
-  //     )}
-  //     </>
-  //     )
-
-  // }
 
   // glom the header and list together
   if (listingHasError) {
-    return <h1>Error:{listingHasError}</h1>;
+    return (<>
+      <h1>Oh No an error has occured</h1>
+      <p>Error:{listingHasError}</p>
+      <p>Please try disabling CORS on your browser and trying again.</p>
+    </>);
   }
 
   return (
